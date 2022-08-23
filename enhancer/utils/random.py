@@ -4,7 +4,7 @@ import torch
 
 
 
-def create_unique_rnge(epoch:int):
+def create_unique_rng(epoch:int):
     """create unique random number generator for each (worker_id,epoch) combination"""
 
     rng = random.Random()
