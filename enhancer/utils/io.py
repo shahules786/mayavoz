@@ -29,6 +29,8 @@ class Audio:
             if os.path.exists(audio):
                 audio,sampling_rate = librosa.load(audio,sr=sampling_rate,mono=False,
                 offset=offset,duration=duration)
+                if len(audio.shape) == 1:
+                    audio = audio.reshape(1,-1)
             else:
                 raise FileNotFoundError(f"File {audio} deos not exist")
         elif isinstance(audio,np.ndarray):
