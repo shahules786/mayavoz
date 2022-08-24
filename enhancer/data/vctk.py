@@ -12,22 +12,6 @@ from enhancer.utils.io import Audio
 
 
 
-class VctkDataset:
-
-    def __init__(self):
-        pass
-
-    def train_loader(self):
-        pass
-
-    def valid_loader(self):
-        pass
-
-    def test_loader(self):
-        pass
-
-
-
 class Vctk(IterableDataset):
     """Dataset object for Voice Bank Corpus (VCTK) Dataset"""
 
