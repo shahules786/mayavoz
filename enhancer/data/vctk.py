@@ -9,45 +9,29 @@ import torch.nn.functional as F
 
 from enhancer.utils.random import create_unique_rng
 from enhancer.utils.io import Audio
+from enhancer.utils import Fileprocessor
 
 
 
-class Vctk(IterableDataset):
-    """Dataset object for Voice Bank Corpus (VCTK) Dataset"""
+class EnhancerDataset(IterableDataset):
+    """Dataset object for creating clean-noisy speech enhancement datasets"""
 
-    def __init__(self,clean_path,noisy_path,duration=1.0,sampling_rate=48000):
+    def __init__(self,name:str,clean_dir,noisy_dir,duration=1.0,sampling_rate=48000, matching_function=None):
         
-        if not os.path.isdir(clean_path):
-            raise ValueError(f"{clean_path} is not a valid directory")
+        if not os.path.isdir(clean_dir):
+            raise ValueError(f"{clean_dir} is not a valid directory")
 
-        if not os.path.isdir(noisy_path):
-            raise ValueError(f"{clean_path} is not a valid directory")
+        if not os.path.isdir(noisy_dir):
+            raise ValueError(f"{clean_dir} is not a valid directory")
 
         self.sampling_rate = sampling_rate
-        self.clean_path = clean_path
-        self.noisy_path = noisy_path
-        self.files_duration = self.get_matching_files_duration()
-        self.wav_samples = list(self.files_duration.keys())
+        self.clean_dir = clean_dir
+        self.noisy_dir = noisy_dir
         self.duration = max(1.0,duration)
         self.audio = Audio(self.sampling_rate,mono=True,return_tensor=True)
 
-    def get_matching_files_duration(self):
-
-        matching_wavfiles_dur = dict()
-        clean_filenames = [file.split('/')[-1] for file in glob.glob(os.path.join(self.clean_path,"*.wav"))]
-        noisy_filenames = [file.split('/')[-1] for file in glob.glob(os.path.join(self.noisy_path,"*.wav"))]
-        common_filenames = np.intersect1d(noisy_filenames,clean_filenames)
-
-        for file_name in common_filenames:
-
-             sr_clean, clean_file = wavfile.read(os.path.join(self.clean_path,file_name))
-             sr_noisy, noisy_file = wavfile.read(os.path.join(self.noisy_path,file_name))
-             if ((clean_file.shape[-1]==noisy_file.shape[-1]) and 
-                    (sr_clean==self.sampling_rate) and 
-                        (sr_noisy==self.sampling_rate)):
-                matching_wavfiles_dur.update({file_name:(clean_file.shape[-1]/self.sampling_rate)})
-
-        return matching_wavfiles_dur
+        fp = Fileprocessor.from_name(name,clean_dir,noisy_dir,matching_function)
+        self.valid_files = fp.prepare_matching_dict()
 
     def __iter__(self):
 
@@ -55,18 +39,18 @@ class Vctk(IterableDataset):
         
         while True:
 
-            file_name,*_ = rng.choices(self.wav_samples,k=1,
-                        weights=[self.files_duration[file] for file in self.wav_samples])
-            file_duration = self.files_duration.get(file_name)
+            file_dict,*_ = rng.choices(self.valid_files,k=1,
+                        weights=[self.valid_files[file]['duration'] for file in self.valid_files])
+            file_duration = file_dict['duration']
             start_time = round(rng.uniform(0,file_duration- self.duration),2)
-            data = self.prepare_segment(file_name,start_time)
+            data = self.prepare_segment(file_dict,start_time)
             yield data
 
-    def prepare_segment(self,file_name:str, start_time:float):
+    def prepare_segment(self,file_dict:dict, start_time:float):
 
-        clean_segment = self.audio(os.path.join(self.clean_path,file_name),
+        clean_segment = self.audio(file_dict.keys()[0],
                                     offset=start_time,duration=self.duration)
-        noisy_segment = self.audio(os.path.join(self.noisy_path,file_name),
+        noisy_segment = self.audio(file_dict['noisy'],
                                     offset=start_time,duration=self.duration)
         clean_segment = F.pad(clean_segment,(0,int(self.duration*self.sampling_rate-clean_segment.shape[-1])))
         noisy_segment = F.pad(noisy_segment,(0,int(self.duration*self.sampling_rate-noisy_segment.shape[-1])))
@@ -74,7 +58,7 @@ class Vctk(IterableDataset):
         
     def __len__(self):
 
-        return math.ceil(sum(self.files_duration.values())/self.duration)
+        return math.ceil(sum([file["duration"] for file in self.valid_files])/self.duration)
 
 
         
