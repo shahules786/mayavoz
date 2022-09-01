@@ -4,5 +4,5 @@ files:
   test_clean: clean_testset_wav
   test_noisy: noisy_testset_wav
 paths:
-  data: ${hydra:runtime.cwd}/../data/vctk
+  data: ${hydra:runtime.cwd}/datasets/vctk
   log: ./runs
