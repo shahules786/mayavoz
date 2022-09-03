@@ -43,7 +43,7 @@ class Fileprocessor:
     @staticmethod
     def match_vtck(clean_path,noisy_path,sr):
 
-        matching_wavfiles = dict()
+        matching_wavfiles = list()
         clean_filenames = [file.split('/')[-1] for file in glob.glob(os.path.join(clean_path,"*.wav"))]
         noisy_filenames = [file.split('/')[-1] for file in glob.glob(os.path.join(noisy_path,"*.wav"))]
         common_filenames = np.intersect1d(noisy_filenames,clean_filenames)
@@ -55,10 +55,9 @@ class Fileprocessor:
              if ((clean_file.shape[-1]==noisy_file.shape[-1]) and 
                     (sr_clean==sr) and 
                         (sr_noisy==sr)):
-                matching_wavfiles.update(
-                                    {os.path.join(clean_path,file_name):{"noisy":os.path.join(noisy_path,file_name),
+                matching_wavfiles.append(
+                                    {"clean":os.path.join(clean_path,file_name),"noisy":os.path.join(noisy_path,file_name),
                                     "duration":clean_file.shape[-1]/sr}
-                                    }
                                     )
         return matching_wavfiles
 
@@ -77,9 +76,8 @@ class Fileprocessor:
                         (sr_clean==sr) and 
                             (sr_noisy==sr)):
                     matching_wavfiles.update(
-                                        {os.path.join(clean_path,clean_file):{"noisy":noisy_file,
+                                        {"clean":os.path.join(clean_path,clean_file),"noisy":noisy_file,
                                         "duration":clean_file.shape[-1]/sr}
-                                        }
                                         )
 
         return matching_wavfiles
