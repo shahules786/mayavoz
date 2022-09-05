@@ -42,7 +42,7 @@ class Audio:
         if self.mono:
             audio = self.convert_mono(audio)
 
-        resampled_audio =  self.resample_audio(audio,sampling_rate)
+        resampled_audio =  self.__class__.resample_audio(audio,self.sampling_rate,sampling_rate)
         if self.return_tensor:
             return torch.tensor(resampled_audio)
         else:
@@ -59,12 +59,13 @@ class Audio:
         return audio
 
 
+    @staticmethod
     def resample_audio(
-        self,
         audio,
-        sampling_rate
+        sr:int,
+        target_sr:int
     ):
-        if self.sampling_rate!=sampling_rate:
-            audio = librosa.resample(audio,orig_sr=sampling_rate,target_sr=self.sampling_rate)
+        if sr!=target_sr:
+            audio = librosa.resample(audio,orig_sr=sr,target_sr=target_sr)
 
         return audio
