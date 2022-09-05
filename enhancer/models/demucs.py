@@ -79,8 +79,8 @@ class Demus(nn.Module):
         self.de_lstm = DeLSTM(input_size=c_in,hidden_size=c_in,num_layers=2,bidirectional=self.bidirectional)
 
     def forward(self,input):
-        pass
-    
+        
+
 
 
 
