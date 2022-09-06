@@ -4,6 +4,7 @@ from typing import Optional
 from matplotlib.pyplot import axis
 import numpy as np
 import torch
+import torchaudio
 
 class Audio:
 
@@ -67,5 +68,16 @@ class Audio:
     ):
         if sr!=target_sr:
             audio = librosa.resample(audio,orig_sr=sr,target_sr=target_sr)
+
+        return audio
+
+    @staticmethod
+    def pt_resample_audio(
+        audio,
+        sr:int,
+        target_sr:int
+    ):
+        if sr!=target_sr:
+            audio = torchaudio.functional.resample(audio,orig_freq=sr,new_freq=target_sr)
 
         return audio
