@@ -1,4 +1,6 @@
+
 import os
+from typing import Optional
 from enhancer.utils.config import Files
 
 def check_files(root_dir:str, files:Files):
@@ -10,3 +12,9 @@ def check_files(root_dir:str, files:Files):
             raise ValueError(f"Invalid {path}, is not a directory")
             
     return files,root_dir
+
+def merge_dict(default_dict:dict, custom:Optional[dict]=None):
+    params = dict(default_dict)
+    if custom:
+        params.update(custom)
+    return params
