@@ -51,11 +51,12 @@ class Demucs(Model):
         num_channels:int=1,
         resample:int=4,
         sampling_rate = 16000,
+        lr:float=1e-3,
         dataset:Optional[EnhancerDataset]=None,
 
     ):
         super().__init__(num_channels=num_channels,
-                            sampling_rate=sampling_rate,dataset=dataset)
+                            sampling_rate=sampling_rate,lr=lr,dataset=dataset)
         
         encoder_decoder = merge_dict(self.ED_DEFAULTS,encoder_decoder)
         lstm = merge_dict(self.LSTM_DEFAULTS,lstm)
