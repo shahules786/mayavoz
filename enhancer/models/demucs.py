@@ -57,7 +57,8 @@ class Demucs(Model):
 
     ):
         super().__init__(num_channels=num_channels,
-                            sampling_rate=sampling_rate,lr=lr,dataset=dataset,loss)
+                            sampling_rate=sampling_rate,lr=lr,
+                            dataset=dataset,loss=loss)
         
         encoder_decoder = merge_dict(self.ED_DEFAULTS,encoder_decoder)
         lstm = merge_dict(self.LSTM_DEFAULTS,lstm)
