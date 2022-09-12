@@ -81,13 +81,13 @@ class TaskDataset(pl.LightningDataModule):
                 num_segments = round(total_dur/self.duration)
                 for index in range(num_segments):
                     start_time = index * self.duration
-                    self._validation.append(({"clean_file":clean,"noisy_file":noisy},
+                    self._validation.append(({"clean":clean,"noisy":noisy},
                                             start_time))
     def train_dataloader(self):
-        return DataLoader(TrainDataset(self), batch_size = self.batch_size)
+        return DataLoader(TrainDataset(self), batch_size = self.batch_size,num_workers=2)
 
     def val_dataloader(self):
-        return DataLoader(ValidDataset(self), batch_size = self.batch_size)
+        return DataLoader(ValidDataset(self), batch_size = self.batch_size,num_workers=2)
 
 class EnhancerDataset(TaskDataset):
     """Dataset object for creating clean-noisy speech enhancement datasets"""
