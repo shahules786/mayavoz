@@ -32,7 +32,7 @@ class DeLSTM(nn.Module):
 class Demucs(Model):
 
     ED_DEFAULTS = {
-        "intial_output_channels":48,
+        "initial_output_channels":48,
         "kernel_size":8,
         "stride":1,
         "depth":5,
@@ -64,7 +64,7 @@ class Demucs(Model):
         lstm = merge_dict(self.LSTM_DEFAULTS,lstm)
         self.save_hyperparameters("encoder_decoder","lstm","resample")
         
-        hidden = encoder_decoder["initial_channel_output"]
+        hidden = encoder_decoder["initial_output_channels"]
         activation = nn.GLU(1) if encoder_decoder["glu"] else nn.ReLU()
         multi_factor = 2 if encoder_decoder["glu"] else 1
 
@@ -90,7 +90,7 @@ class Demucs(Model):
             self.decoder.insert(0,decoder_layer)
 
             num_channels = hidden
-            hidden = self.growth_factor * hidden
+            hidden = self.ED_DEFAULTS["growth_factor"] * hidden
 
         
         self.de_lstm = DeLSTM(input_size=num_channels,hidden_size=num_channels,num_layers=lstm["num_layers"],bidirectional=lstm["bidirectional"])
@@ -131,10 +131,10 @@ class Demucs(Model):
 
   
         for layer in range(self.hparams.encoder_decoder["depth"]):                                        # encoder operation
-            input_length = math.ceil((input_length - self.kernel_size)/self.stride)+1
+            input_length = math.ceil((input_length - self.hparams.encoder_decoder["kernel_size"])/self.hparams.encoder_decoder["stride"])+1
             input_length = max(1,input_length)
         for layer in range(self.hparams.encoder_decoder["depth"]):                                        # decoder operaration
-            input_length = (input_length-1) * self.stride + self.kernel_size
+            input_length = (input_length-1) * self.hparams.encoder_decoder["stride"] + self.hparams.encoder_decoder["kernel_size"]
         input_length = math.ceil(input_length/self.hparams.resample)
 
         return int(input_length)
