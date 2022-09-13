@@ -11,6 +11,10 @@ class mean_squared_error(nn.Module):
         self.loss_fun = nn.MSELoss(reduction=reduction)
 
     def forward(self,prediction:torch.Tensor, target: torch.Tensor):
+        
+        if prediction.size() != target.size() or target.ndim < 3:
+            raise TypeError(f"""Inputs must be of the same shape (batch_size,channels,samples) 
+                            got {prediction.size()} and {target.size()} instead""")
 
         return self.loss_fun(prediction, target)
 
@@ -22,6 +26,10 @@ class mean_absolute_error(nn.Module):
         self.loss_fun = nn.L1Loss(reduction=reduction)
 
     def forward(self, prediction:torch.Tensor, target: torch.Tensor):
+
+        if prediction.size() != target.size() or target.ndim < 3:
+            raise TypeError(f"""Inputs must be of the same shape (batch_size,channels,samples) 
+                            got {prediction.size()} and {target.size()} instead""")
 
         return self.loss_fun(prediction, target)
 
