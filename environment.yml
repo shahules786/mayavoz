@@ -1,0 +1,8 @@
+name: enhancer
+
+dependencies:
+  - pip=21.0.1
+  - python=3.8
+  - pip:
+      - -r requirements.txt
+      - --find-links https://download.pytorch.org/whl/cu113/torch_stable.html
