@@ -11,7 +11,7 @@ class mean_squared_error(nn.Module):
         self.loss_fun = nn.MSELoss(reduction=reduction)
 
     def forward(self,prediction:torch.Tensor, target: torch.Tensor):
-        
+
         if prediction.size() != target.size() or target.ndim < 3:
             raise TypeError(f"""Inputs must be of the same shape (batch_size,channels,samples) 
                             got {prediction.size()} and {target.size()} instead""")
@@ -46,7 +46,7 @@ class Avergeloss(nn.Module):
 
     def validate_loss(self,loss:str):
         if loss not in LOSS_MAP.keys():
-            raise ValueError()
+            raise ValueError(f"Invalid loss function {loss}, available loss functions are {LOSS_MAP.keys()}")
         else:
             return LOSS_MAP[loss]
 
