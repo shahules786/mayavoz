@@ -3,7 +3,7 @@ from torch.optim import Adam
 import pytorch_lightning as pl
 
 from enhancer.data.dataset import Dataset
-from enhancer.utils.loss import Avergeloss
+from enhancer.utils.loss import LOSS_MAP, Avergeloss
 
 
 class Model(pl.LightningModule):

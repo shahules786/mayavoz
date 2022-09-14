@@ -100,6 +100,9 @@ class Demucs(Model):
         if mixed_signal.dim() == 2:
             mixed_signal = mixed_signal.unsqueeze(1)
 
+        if mixed_signal.size(1)!=1:
+            raise TypeError(f"Demucs can only process mono channel audio, input has {mixed_signal.size(1)} channels")
+
         length = mixed_signal.shape[-1]
         x = F.pad(mixed_signal, (0,self.get_padding_length(length) - length)) 
         if self.hparams.resample>1:
