@@ -43,11 +43,12 @@ class Audio:
         if self.mono:
             audio = self.convert_mono(audio)
 
-        resampled_audio =  self.__class__.resample_audio(audio,self.sampling_rate,sampling_rate)
+        if sampling_rate:
+            audio =  self.__class__.resample_audio(audio,self.sampling_rate,sampling_rate)
         if self.return_tensor:
-            return torch.tensor(resampled_audio)
+            return torch.tensor(audio)
         else:
-            return resampled_audio
+            return audio
 
     def convert_mono(
         self,
