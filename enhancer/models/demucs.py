@@ -106,7 +106,7 @@ class Demucs(Model):
         length = mixed_signal.shape[-1]
         x = F.pad(mixed_signal, (0,self.get_padding_length(length) - length)) 
         if self.hparams.resample>1:
-            x = audio.pt_resample_audio(audio=x, sr=self.hparams.sampling_rate,
+            x = audio.resample_audio(audio=x, sr=self.hparams.sampling_rate,
                         target_sr=int(self.hparams.sampling_rate * self.hparams.resample))
         
         encoder_outputs = []
@@ -123,7 +123,7 @@ class Demucs(Model):
             x = decoder(x)
         
         if self.hparams.resample > 1:
-            x = audio.pt_resample_audio(x,int(self.hparams.sampling_rate * self.hparams.resample),
+            x = audio.resample_audio(x,int(self.hparams.sampling_rate * self.hparams.resample),
                                     self.hparams.sampling_rate)
 
         return x
