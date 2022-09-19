@@ -20,7 +20,7 @@ def test_io_resampling():
     resampled_audio = Audio.resample_audio(input_audio,16000,8000)
 
     input_audio = torch.rand(1,32000)
-    resampled_audio_pt = Audio.pt_resample_audio(input_audio,16000,8000)
+    resampled_audio_pt = Audio.resample_audio(input_audio,16000,8000)
 
     assert resampled_audio.shape[1] == resampled_audio_pt.size(1) == 16000
 
