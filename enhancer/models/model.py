@@ -1,8 +1,4 @@
-from asyncore import write
 from importlib import import_module
-from lib2to3.pgen2.token import OP
-import wave
-from xmlrpc.client import boolean
 from huggingface_hub import cached_download, hf_hub_url
 import numpy as np
 import os
@@ -191,7 +187,7 @@ class Model(pl.LightningModule):
         audio:Union[Path,np.ndarray,torch.Tensor],
         sampling_rate:Optional[int]=None,
         batch_size:int=32,
-        save_output:boolean=False,
+        save_output:bool=False,
         duration:Optional[int]=None,
         step_size:Optional[int]=None,):
 
