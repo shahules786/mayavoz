@@ -59,7 +59,7 @@ class Audio:
             assert audio.shape[0] == 1, "convert mono only accepts single waveform"
             audio = audio.reshape(audio.shape[1],audio.shape[2])
          
-        assert audio.shape[0] > audio.shape[1], "expected input format (num_channels,num_samples)"
+        assert audio.shape[1] >> audio.shape[0], f"expected input format (num_channels,num_samples) got {audio.shape}"
         num_channels,num_samples = audio.shape
         if num_channels>1:
             return audio.mean(axis=0).reshape(1,num_samples)
