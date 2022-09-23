@@ -18,7 +18,7 @@ def create_unique_rng(epoch:int):
     worker_info = torch.utils.data.get_worker_info()
     if worker_info is not None:
         num_workers = worker_info.num_workers
-        worker_id = worker_info.worker_id
+        worker_id = worker_info.id
     else:
         num_workers = 1
         worker_id = 0
