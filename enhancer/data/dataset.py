@@ -8,9 +8,10 @@ from torch.utils.data import IterableDataset, DataLoader, Dataset
 import torch.nn.functional as F
 from typing import Optional
 
+from enhancer.data.fileprocessor import Fileprocessor
 from enhancer.utils.random import create_unique_rng
 from enhancer.utils.io import Audio
-from enhancer.utils import Fileprocessor, check_files
+from enhancer.utils import check_files
 from enhancer.utils.config import Files
 
 class TrainDataset(IterableDataset):
