@@ -2,7 +2,7 @@ from asyncio import base_tasks
 import torch
 import pytest
 
-from enhancer.utils.loss import mean_absolute_error, mean_squared_error
+from enhancer.loss import mean_absolute_error, mean_squared_error
 
 loss_functions = [mean_absolute_error(), mean_squared_error()]
 
