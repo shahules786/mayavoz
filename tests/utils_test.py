@@ -5,7 +5,7 @@ import numpy as np
 
 from enhancer.utils.io import Audio
 from enhancer.utils.config import Files
-from enhancer.utils.fileprocessor import Fileprocessor
+from enhancer.data.fileprocessor import Fileprocessor
 
 def test_io_channel():
 

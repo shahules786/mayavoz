@@ -15,7 +15,7 @@ from pathlib import Path
 from enhancer import __version__
 from enhancer.data.dataset import EnhancerDataset
 from enhancer.utils.io import Audio
-from enhancer.utils.loss import Avergeloss
+from enhancer.loss import Avergeloss
 from enhancer.inference import Inference
 
 CACHE_DIR = ""
