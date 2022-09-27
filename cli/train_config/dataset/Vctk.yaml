@@ -1,0 +1,15 @@
+_target_: enhancer.data.dataset.EnhancerDataset
+root_dir : /Users/shahules/Myprojects/enhancer/datasets/vctk_test
+
+files:
+  train_clean : clean_test_wav
+  test_clean : clean_test_wav
+  train_noisy : clean_test_wav
+  test_noisy : clean_test_wav
+
+name : vctk
+duration : 1.0
+sampling_rate: 48000
+batch_size: 32
+
+

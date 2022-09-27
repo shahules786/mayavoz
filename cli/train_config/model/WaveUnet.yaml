@@ -1,0 +1,5 @@
+_target_: enhancer.models.waveunet.WaveUnet
+num_channels : 1
+depth : 12
+initial_output_channels: 24
+sampling_rate : 16000

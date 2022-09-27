@@ -1,0 +1,4 @@
+loss : mse
+metric : mae
+lr : 0.001
+num_epochs : 10
