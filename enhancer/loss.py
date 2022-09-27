@@ -45,7 +45,7 @@ class Avergeloss(nn.Module):
 
     def validate_loss(self,loss:str):
         if loss not in LOSS_MAP.keys():
-            raise ValueError(f"Invalid loss function {loss}, available loss functions are {LOSS_MAP.keys()}")
+            raise ValueError(f"Invalid loss function {loss}, available loss functions are {tuple([loss for loss in LOSS_MAP.keys()])}")
         else:
             return LOSS_MAP[loss]
 
@@ -59,6 +59,6 @@ class Avergeloss(nn.Module):
             
 
 
-LOSS_MAP = {"mea":mean_absolute_error, "mse": mean_squared_error}
+LOSS_MAP = {"mae":mean_absolute_error, "mse": mean_squared_error}
 
 
