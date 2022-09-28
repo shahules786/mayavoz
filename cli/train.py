@@ -4,8 +4,6 @@ from omegaconf import DictConfig
 from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping
 from pytorch_lightning.loggers import MLFlowLogger
 
-from enhancer.data.dataset import EnhancerDataset
-
 @hydra.main(config_path="train_config",config_name="config")
 def main(config: DictConfig):
 
