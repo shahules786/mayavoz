@@ -21,12 +21,13 @@ module load anaconda
 echo "Activate Environment"
 source activate enhancer
 export TRANSFORMERS_OFFLINE=True
-export PYTHONPATH=${PYTHONPATH}:$/scratch/$USER/enhancer
+export PYTHONPATH=${PYTHONPATH}:/home/c.sistc3/enhancer
 
 source ~/mlflow_settings.sh
 
 echo "Making temp dir"
 mkdir temp
+pwd
 
 #python transcriber/tasks/embeddings/timit.py --directory /scratch/$USER/TIMIT/data/lisa/data/timit/raw/TIMIT/TRAIN --output ./data/train
 #python transcriber/tasks/embeddings/timit.py --directory /scratch/$USER/TIMIT/data/lisa/data/timit/raw/TIMIT/TEST --output ./data/test 
