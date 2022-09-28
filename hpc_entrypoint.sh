@@ -21,7 +21,8 @@ module load anaconda
 echo "Activate Environment"
 source activate enhancer
 export TRANSFORMERS_OFFLINE=True
-export PYTHONPATH=${PYTHONPATH}:/home/c.sistc3/enhancer
+export PYTHONPATH=${PYTHONPATH}:/scratch/c.sistc3/enhancer
+echo $PYTHONPATH
 
 source ~/mlflow_settings.sh
 
