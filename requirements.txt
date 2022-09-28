@@ -10,5 +10,6 @@ tqdm==4.64.0
 mlflow==1.23.1
 protobuf==3.19.3
 boto3==1.23.9
+torchaudio==0.10.2
 huggingface-hub==0.4.0
 pytorch-lightning==1.5.10
