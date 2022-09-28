@@ -10,7 +10,6 @@ from pathlib import Path
 from librosa import load as load_audio
 
 from enhancer.utils import Audio
-from enhancer.utils.config import DEFAULT_DEVICE
 
 class Inference:
 
