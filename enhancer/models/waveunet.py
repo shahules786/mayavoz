@@ -125,7 +125,6 @@ class WaveUnet(Model):
 
         for layer,decoder in enumerate(self.decoders):
             out = F.interpolate(out, scale_factor=2, mode="linear")
-            print(out.shape,encoder_outputs[layer].shape)
             out = self.fix_last_dim(out,encoder_outputs[layer])
             out = torch.cat([out,encoder_outputs[layer]],dim=1)
             out = decoder(out)
