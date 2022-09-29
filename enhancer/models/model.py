@@ -83,7 +83,7 @@ class Model(pl.LightningModule):
         loss = self.loss(prediction, target)
 
         if self.logger:
-            self.logger.experiment.log_metric("train_loss",loss.item(), step=self.global_step)
+            self.logger.experiment.log_metric(key="train_loss",value=loss.item(), step=self.global_step)
 
         return {"loss":loss}
 
@@ -95,7 +95,7 @@ class Model(pl.LightningModule):
 
         loss = self.metric(prediction, target)
         if self.logger:
-            self.logger.experiment.log_metric("val_loss",loss.item(), step=self.global_step)
+            self.logger.experiment.log_metric(key="val_loss",value=loss.item(), step=self.global_step)
 
         return {"loss":loss}
 
