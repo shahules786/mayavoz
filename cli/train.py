@@ -1,3 +1,4 @@
+import os
 import hydra
 from hydra.utils import instantiate
 from omegaconf import DictConfig
@@ -12,7 +13,7 @@ def main(config: DictConfig):
     callbacks = []
     callbacks.append(TQDMProgressBar(refresh_rate=10))
     logger = MLFlowLogger(experiment_name=config.mlflow.experiment_name,
-                            run_name=config.mlflow.run_name)
+                            run_name=config.mlflow.run_name, tags={"JOB_ID":os.environ.get("SLURM_JOBID")})
 
 
     parameters = config.hyperparameters
