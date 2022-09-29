@@ -3,5 +3,5 @@ defaults:
   - dataset : Vctk
   - optimizer : Adam
   - hyperparameters : default
-  - trainer : default
+  - trainer : fastrun_dev
   - mlflow : experiment
