@@ -1,5 +1,4 @@
-from tkinter import wantobjects
-import wave
+import logging
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -71,7 +70,10 @@ class WaveUnet(Model):
         metric:Union[str,List] = "mse"
     ):
         duration = dataset.duration if isinstance(dataset,EnhancerDataset) else None
-        sampling_rate = sampling_rate if dataset is None else dataset.sampling_rate
+        if dataset is not None:
+            if sampling_rate!=dataset.sampling_rate:
+                logging.warn(f"model sampling rate {sampling_rate} should match dataset sampling rate {dataset.sampling_rate}")
+                sampling_rate = dataset.sampling_rate
         super().__init__(num_channels=num_channels,
                             sampling_rate=sampling_rate,lr=lr,
                             dataset=dataset,duration=duration,loss=loss, metric=metric
