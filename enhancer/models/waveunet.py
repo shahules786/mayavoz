@@ -70,6 +70,8 @@ class WaveUnet(Model):
         loss: Union[str, List] = "mse",
         metric:Union[str,List] = "mse"
     ):
+        duration = dataset.duration if isinstance(dataset,EnhancerDataset) else None
+        sampling_rate = sampling_rate if dataset is None else dataset.sampling_rate
         super().__init__(num_channels=num_channels,
                             sampling_rate=sampling_rate,lr=lr,
                             dataset=dataset,duration=duration,loss=loss, metric=metric
