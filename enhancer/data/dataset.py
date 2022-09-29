@@ -66,15 +66,13 @@ class TaskDataset(pl.LightningDataModule):
             train_clean = os.path.join(self.root_dir,self.files.train_clean)
             train_noisy = os.path.join(self.root_dir,self.files.train_noisy)
             fp = Fileprocessor.from_name(self.name,train_clean,
-                                        train_noisy,self.sampling_rate,
-                                        self.matching_function)
+                                        train_noisy, self.matching_function)
             self.train_data = fp.prepare_matching_dict()
             
             val_clean = os.path.join(self.root_dir,self.files.test_clean)
             val_noisy = os.path.join(self.root_dir,self.files.test_noisy)
             fp =  Fileprocessor.from_name(self.name,val_clean,
-                                        val_noisy,self.sampling_rate,
-                                        self.matching_function)
+                                        val_noisy, self.matching_function)
             val_data = fp.prepare_matching_dict()
 
             for item in val_data:
