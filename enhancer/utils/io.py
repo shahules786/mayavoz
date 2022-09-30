@@ -1,7 +1,6 @@
 import os
 import librosa
 from typing import Optional
-from matplotlib.pyplot import axis
 import numpy as np
 import torch
 import torchaudio

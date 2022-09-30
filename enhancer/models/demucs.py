@@ -1,9 +1,8 @@
-from base64 import encode
-from turtle import forward
+import logging
 from typing import Optional, Union, List
 from torch import nn
 import torch.nn.functional as F
-import math 
+import math
 
 from enhancer.models.model import Model
 from enhancer.data.dataset import EnhancerDataset
@@ -114,6 +113,10 @@ class Demucs(Model):
 
     ):
         duration = dataset.duration if isinstance(dataset,EnhancerDataset) else None
+        if dataset is not None:
+            if sampling_rate!=dataset.sampling_rate:
+                logging.warn(f"model sampling rate {sampling_rate} should match dataset sampling rate {dataset.sampling_rate}")
+                sampling_rate = dataset.sampling_rate
         super().__init__(num_channels=num_channels,
                             sampling_rate=sampling_rate,lr=lr,
                             dataset=dataset,duration=duration,loss=loss, metric=metric)

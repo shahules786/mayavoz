@@ -22,6 +22,8 @@ echo "Activate Environment"
 source activate enhancer
 export TRANSFORMERS_OFFLINE=True
 export PYTHONPATH=${PYTHONPATH}:/scratch/c.sistc3/enhancer
+export HYDRA_FULL_ERROR=1
+
 echo $PYTHONPATH
 
 source ~/mlflow_settings.sh

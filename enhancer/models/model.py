@@ -1,5 +1,6 @@
 from importlib import import_module
 from huggingface_hub import cached_download, hf_hub_url
+import logging
 import numpy as np
 import os
 from typing import Optional, Union, List, Text, Dict, Any
@@ -82,8 +83,10 @@ class Model(pl.LightningModule):
         loss = self.loss(prediction, target)
 
         if self.logger:
-            self.logger.experiment.log_metrics({"train_loss":loss.item()}, step=self.global_step)
-
+            self.logger.experiment.log_metric(run_id=self.logger.run_id, 
+                    key="train_loss", value=loss.item(), 
+                    step=self.global_step)
+        self.log("train_loss",loss.item())
         return {"loss":loss}
 
     def validation_step(self,batch,batch_idx:int):
@@ -92,11 +95,20 @@ class Model(pl.LightningModule):
         target = batch["clean"]
         prediction = self(mixed_waveform)
 
-        loss = self.metric(prediction, target)
-        if self.logger:
-            self.logger.experiment.log_metrics({"val_loss":loss.item()}, step=self.global_step)
+        metric_val = self.metric(prediction, target)
+        loss_val = self.loss(prediction, target)
+        self.log("val_metric",metric_val.item())
+        self.log("val_loss",loss_val.item())
 
-        return {"loss":loss}
+        if self.logger:
+            self.logger.experiment.log_metric(run_id=self.logger.run_id, 
+                        key="val_loss",value=loss_val.item(),
+                        step=self.global_step)
+            self.logger.experiment.log_metric(run_id=self.logger.run_id, 
+                        key="val_metric",value=metric_val.item(),
+                        step=self.global_step)
+
+        return {"loss":loss_val}
 
     def on_save_checkpoint(self, checkpoint):
 

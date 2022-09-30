@@ -1,5 +1,4 @@
-from tkinter import wantobjects
-import wave
+import logging
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -70,6 +69,11 @@ class WaveUnet(Model):
         loss: Union[str, List] = "mse",
         metric:Union[str,List] = "mse"
     ):
+        duration = dataset.duration if isinstance(dataset,EnhancerDataset) else None
+        if dataset is not None:
+            if sampling_rate!=dataset.sampling_rate:
+                logging.warn(f"model sampling rate {sampling_rate} should match dataset sampling rate {dataset.sampling_rate}")
+                sampling_rate = dataset.sampling_rate
         super().__init__(num_channels=num_channels,
                             sampling_rate=sampling_rate,lr=lr,
                             dataset=dataset,duration=duration,loss=loss, metric=metric
@@ -125,7 +129,6 @@ class WaveUnet(Model):
 
         for layer,decoder in enumerate(self.decoders):
             out = F.interpolate(out, scale_factor=2, mode="linear")
-            print(out.shape,encoder_outputs[layer].shape)
             out = self.fix_last_dim(out,encoder_outputs[layer])
             out = torch.cat([out,encoder_outputs[layer]],dim=1)
             out = decoder(out)
