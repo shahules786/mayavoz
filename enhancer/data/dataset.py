@@ -91,7 +91,28 @@ class TaskDataset(pl.LightningDataModule):
         return DataLoader(ValidDataset(self), batch_size = self.batch_size,num_workers=self.num_workers)
 
 class EnhancerDataset(TaskDataset):
-    """Dataset object for creating clean-noisy speech enhancement datasets"""
+    """
+    Dataset object for creating clean-noisy speech enhancement datasets
+    paramters:
+    name : str
+        name of the dataset 
+    root_dir : str
+        root directory of the dataset containing clean/noisy folders
+    files : Files
+        dataclass containing train_clean, train_noisy, test_clean, test_noisy 
+        folder names (refer cli/train_config/dataset)
+    duration : float
+        expected audio duration of single audio sample for training
+    sampling_rate : int
+        desired sampling rate 
+    batch_size : int
+        batch size of each batch
+    num_workers : int
+        num workers to be used while training
+    matching_function : 
+        custom function for dataset processing.
+    
+    """
 
     def __init__(
         self,
