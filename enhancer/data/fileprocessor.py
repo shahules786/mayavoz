@@ -7,7 +7,10 @@ from scipy.io import wavfile
 class ProcessorFunctions:
 
     @staticmethod
-    def match_vtck(clean_path,noisy_path):
+    def one_to_one(clean_path,noisy_path):
+        """
+        One clean audio can have only one noisy audio file
+        """
 
         matching_wavfiles = list()
         clean_filenames = [file.split('/')[-1] for file in glob.glob(os.path.join(clean_path,"*.wav"))]
@@ -27,7 +30,10 @@ class ProcessorFunctions:
         return matching_wavfiles
 
     @staticmethod
-    def match_dns2020(clean_path,noisy_path):
+    def one_to_many(clean_path,noisy_path):
+        """
+        One clean audio have multiple noisy audio files
+        """
         
         matching_wavfiles = dict()
         clean_filenames = [file.split('/')[-1] for file in glob.glob(os.path.join(clean_path,"*.wav"))]
@@ -68,9 +74,9 @@ class Fileprocessor:
         ):
 
         if name.lower() == "vctk":
-            return cls(clean_dir,noisy_dir, ProcessorFunctions.match_vtck)
+            return cls(clean_dir,noisy_dir, ProcessorFunctions.one_to_one)
         elif name.lower() == "dns-2020":
-            return cls(clean_dir,noisy_dir, ProcessorFunctions.match_dns2020)
+            return cls(clean_dir,noisy_dir, ProcessorFunctions.one_to_many)
         else:
             return cls(clean_dir,noisy_dir, matching_function)
 
