@@ -109,8 +109,11 @@ class EnhancerDataset(TaskDataset):
         batch size of each batch
     num_workers : int
         num workers to be used while training
-    matching_function : 
-        custom function for dataset processing.
+    matching_function : str
+        maching functions - (one_to_one,one_to_many). Default set to None.
+        use one_to_one mapping for datasets with one noisy file for each clean file
+        use one_to_many mapping for multiple noisy files for each clean file
+
     
     """
 

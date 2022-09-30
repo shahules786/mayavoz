@@ -4,6 +4,8 @@ from re import S
 import numpy as np
 from scipy.io import wavfile
 
+MATCHING_FNS = ("one_to_one","one_to_many")
+
 class ProcessorFunctions:
 
     @staticmethod
@@ -73,12 +75,18 @@ class Fileprocessor:
                 matching_function=None
         ):
 
-        if name.lower() == "vctk":
-            return cls(clean_dir,noisy_dir, ProcessorFunctions.one_to_one)
-        elif name.lower() == "dns-2020":
-            return cls(clean_dir,noisy_dir, ProcessorFunctions.one_to_many)
+        if matching_function is None:
+            if name.lower() == "vctk":
+                return cls(clean_dir,noisy_dir, ProcessorFunctions.one_to_one)
+            elif name.lower() == "dns-2020":
+                return cls(clean_dir,noisy_dir, ProcessorFunctions.one_to_many)
         else:
-            return cls(clean_dir,noisy_dir, matching_function)
+            if matching_function not in MATCHING_FNS:
+                raise ValueError(F"Invalid matching function! Avaialble options are {MATCHING_FNS}")
+            else:
+                return cls(clean_dir,noisy_dir, getattr(ProcessorFunctions,matching_function))
+
+            
 
     def prepare_matching_dict(self):
 
