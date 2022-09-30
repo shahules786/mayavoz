@@ -4,14 +4,12 @@ from hydra.utils import instantiate
 from omegaconf import DictConfig
 from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping
 from pytorch_lightning.loggers import MLFlowLogger
-from pytorch_lightning.callbacks import TQDMProgressBar
 
 
 @hydra.main(config_path="train_config",config_name="config")
 def main(config: DictConfig):
 
     callbacks = []
-    callbacks.append(TQDMProgressBar(refresh_rate=10))
     logger = MLFlowLogger(experiment_name=config.mlflow.experiment_name,
                             run_name=config.mlflow.run_name, tags={"JOB_ID":os.environ.get("SLURM_JOBID")})
 
@@ -23,12 +21,12 @@ def main(config: DictConfig):
             loss=parameters.get("loss"), metric = parameters.get("metric"))
 
     checkpoint = ModelCheckpoint(
-        dirpath="",filename="model",monitor=parameters.get("loss"),verbose=False,
+        dirpath="",filename="model",monitor="valid_loss",verbose=False,
         mode="min",every_n_epochs=1
     )
     callbacks.append(checkpoint)
     early_stopping = EarlyStopping(
-            monitor=parameters.get("loss"),
+            monitor="valid_loss",
             mode="min",
             min_delta=0.0,
             patience=100,
