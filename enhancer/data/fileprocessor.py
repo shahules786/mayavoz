@@ -4,10 +4,15 @@ from re import S
 import numpy as np
 from scipy.io import wavfile
 
+MATCHING_FNS = ("one_to_one","one_to_many")
+
 class ProcessorFunctions:
 
     @staticmethod
-    def match_vtck(clean_path,noisy_path):
+    def one_to_one(clean_path,noisy_path):
+        """
+        One clean audio can have only one noisy audio file
+        """
 
         matching_wavfiles = list()
         clean_filenames = [file.split('/')[-1] for file in glob.glob(os.path.join(clean_path,"*.wav"))]
@@ -27,7 +32,10 @@ class ProcessorFunctions:
         return matching_wavfiles
 
     @staticmethod
-    def match_dns2020(clean_path,noisy_path):
+    def one_to_many(clean_path,noisy_path):
+        """
+        One clean audio have multiple noisy audio files
+        """
         
         matching_wavfiles = dict()
         clean_filenames = [file.split('/')[-1] for file in glob.glob(os.path.join(clean_path,"*.wav"))]
@@ -67,12 +75,18 @@ class Fileprocessor:
                 matching_function=None
         ):
 
-        if name.lower() == "vctk":
-            return cls(clean_dir,noisy_dir, ProcessorFunctions.match_vtck)
-        elif name.lower() == "dns-2020":
-            return cls(clean_dir,noisy_dir, ProcessorFunctions.match_dns2020)
+        if matching_function is None:
+            if name.lower() == "vctk":
+                return cls(clean_dir,noisy_dir, ProcessorFunctions.one_to_one)
+            elif name.lower() == "dns-2020":
+                return cls(clean_dir,noisy_dir, ProcessorFunctions.one_to_many)
         else:
-            return cls(clean_dir,noisy_dir, matching_function)
+            if matching_function not in MATCHING_FNS:
+                raise ValueError(F"Invalid matching function! Avaialble options are {MATCHING_FNS}")
+            else:
+                return cls(clean_dir,noisy_dir, getattr(ProcessorFunctions,matching_function))
+
+            
 
     def prepare_matching_dict(self):
 
