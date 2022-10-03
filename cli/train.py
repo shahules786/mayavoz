@@ -56,7 +56,7 @@ def main(config: DictConfig):
     trainer = instantiate(config.trainer,logger=logger,callbacks=callbacks)
     trainer.fit(model)
     if os.path.exists("./model/"):
-        logger.experiment.log_artifact(logger.run_id,f"./model/.*")
+        logger.experiment.log_artifact(logger.run_id,f"model_{JOB_ID}.ckpt")
 
 
 
