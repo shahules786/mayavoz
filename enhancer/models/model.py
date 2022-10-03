@@ -249,7 +249,7 @@ class Model(pl.LightningModule):
         else:
             waveform = Inference.prepare_output(waveform, model_sampling_rate,
                                 audio, sampling_rate)    
-        return waveform
+            return waveform
     @property
     def valid_monitor(self):
 
