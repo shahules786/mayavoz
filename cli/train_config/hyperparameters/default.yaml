@@ -1,3 +1,9 @@
 loss : mse
 metric : mae
 lr : 0.0001
+num_epochs : 100
+ReduceLr_patience : 5
+ReduceLr_factor : 0.1
+min_lr : 0.000001
+EarlyStopping_factor : 10
+
