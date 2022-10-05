@@ -1,7 +1,8 @@
 import os
-import librosa
 from pathlib import Path
 from typing import Optional, Union
+
+import librosa
 import numpy as np
 import torch
 import torchaudio
