@@ -94,6 +94,8 @@ class Avergeloss(nn.Module):
     """
     Combine multiple metics of same nature.
     for example, ["mea","mae"]
+    parameters:
+        losses : loss function names to be combined
     """
 
     def __init__(self, losses):
