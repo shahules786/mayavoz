@@ -1,11 +1,12 @@
 import logging
-from typing import Optional, Union, List
-from torch import nn
-import torch.nn.functional as F
 import math
+from typing import List, Optional, Union
 
-from enhancer.models.model import Model
+import torch.nn.functional as F
+from torch import nn
+
 from enhancer.data.dataset import EnhancerDataset
+from enhancer.models.model import Model
 from enhancer.utils.io import Audio as audio
 from enhancer.utils.utils import merge_dict
 
