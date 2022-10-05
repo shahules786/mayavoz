@@ -1,16 +1,17 @@
-import multiprocessing
 import math
+import multiprocessing
 import os
-import pytorch_lightning as pl
-from torch.utils.data import IterableDataset, DataLoader, Dataset
-import torch.nn.functional as F
 from typing import Optional
 
+import pytorch_lightning as pl
+import torch.nn.functional as F
+from torch.utils.data import DataLoader, Dataset, IterableDataset
+
 from enhancer.data.fileprocessor import Fileprocessor
-from enhancer.utils.random import create_unique_rng
-from enhancer.utils.io import Audio
 from enhancer.utils import check_files
 from enhancer.utils.config import Files
+from enhancer.utils.io import Audio
+from enhancer.utils.random import create_unique_rng
 
 
 class TrainDataset(IterableDataset):
