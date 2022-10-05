@@ -1,11 +1,12 @@
 import os
 from types import MethodType
+
 import hydra
 from hydra.utils import instantiate
 from omegaconf import DictConfig
-from torch.optim.lr_scheduler import ReduceLROnPlateau
-from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping
+from pytorch_lightning.callbacks import EarlyStopping, ModelCheckpoint
 from pytorch_lightning.loggers import MLFlowLogger
+from torch.optim.lr_scheduler import ReduceLROnPlateau
 
 os.environ["HYDRA_FULL_ERROR"] = "1"
 JOB_ID = os.environ.get("SLURM_JOBID", "0")
