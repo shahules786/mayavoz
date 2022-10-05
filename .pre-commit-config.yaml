@@ -7,7 +7,7 @@ repos:
     #     - id: nbstripout
     # Format Code
     - repo: https://github.com/ambv/black
-      rev: 22.3.0
+      rev: 22.8.0
       hooks:
         - id: black
 
@@ -20,7 +20,7 @@ repos:
 
     # Formatting, Whitespace, etc
     - repo: git://github.com/pre-commit/pre-commit-hooks
-      rev: v2.2.3
+      rev: v2.20.0
       hooks:
       - id: trailing-whitespace
       - id: check-added-large-files
