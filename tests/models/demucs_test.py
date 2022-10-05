@@ -1,7 +1,6 @@
 import pytest
 import torch
 
-from enhancer import data
 from enhancer.data.dataset import EnhancerDataset
 from enhancer.models import Demucs
 from enhancer.utils.config import Files
@@ -41,4 +40,4 @@ def test_forward(batch_size, samples):
 )
 def test_demucs_init(dataset, channels, loss):
     with torch.no_grad():
-        model = Demucs(num_channels=channels, dataset=dataset, loss=loss)
+        _ = Demucs(num_channels=channels, dataset=dataset, loss=loss)

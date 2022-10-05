@@ -1,11 +1,8 @@
-from logging import root
-
 import numpy as np
 import pytest
 import torch
 
 from enhancer.data.fileprocessor import Fileprocessor
-from enhancer.utils.config import Files
 from enhancer.utils.io import Audio
 
 
@@ -48,6 +45,6 @@ def test_fileprocessor_names(dataset_name):
 
 def test_fileprocessor_invaliname():
     with pytest.raises(ValueError):
-        fp = Fileprocessor.from_name(
+        _ = Fileprocessor.from_name(
             "undefined", "clean_dir", "noisy_dir", 16000
         ).prepare_matching_dict()

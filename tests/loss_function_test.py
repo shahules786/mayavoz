@@ -1,5 +1,3 @@
-from asyncio import base_tasks
-
 import pytest
 import torch
 
