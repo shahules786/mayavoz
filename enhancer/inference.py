@@ -28,7 +28,7 @@ class Inference:
         if isinstance(audio, (np.ndarray, torch.Tensor)):
             assert sr is not None, "Invalid sampling rate!"
             if len(audio.shape) == 1:
-                audio = audio.reshape(1,-1)
+                audio = audio.reshape(1, -1)
 
         if isinstance(audio, str):
             audio = Path(audio)
@@ -105,8 +105,7 @@ class Inference:
         window = get_window(window=window, Nx=data.shape[-1])
         window = torch.from_numpy(window).to(data.device)
         data *= window
-        step_size = window_size//2 if step_size is None else step_size
-
+        step_size = window_size // 2 if step_size is None else step_size
 
         data = data.permute(1, 2, 0)
         data = F.fold(
@@ -134,8 +133,8 @@ class Inference:
         if isinstance(filename, str):
             filename = Path(filename)
 
-        parent, name = filename.parent, "cleaned_"+filename.name
-        filename = parent/Path(name)
+        parent, name = filename.parent, "cleaned_" + filename.name
+        filename = parent / Path(name)
         if filename.is_file():
             raise FileExistsError(f"file {filename} already exists")
         else:
