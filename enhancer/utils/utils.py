@@ -19,6 +19,7 @@ def check_files(root_dir: str, files: Files):
 
 
 def merge_dict(default_dict: dict, custom: Optional[dict] = None):
+
     params = dict(default_dict)
     if custom:
         params.update(custom)

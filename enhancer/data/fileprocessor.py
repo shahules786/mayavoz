@@ -1,6 +1,5 @@
 import glob
 import os
-from re import S
 import numpy as np
 from scipy.io import wavfile
 
