@@ -3,12 +3,12 @@ name : vctk
 root_dir : /scratch/c.sistc3/DS_10283_2791
 duration : 1.0
 sampling_rate: 16000
-batch_size: 8
+batch_size: 64
 
 files:
-  train_clean : clean_trainset_56spk_wav
+  train_clean : clean_trainset_28spk_wav
   test_clean : clean_testset_wav
-  train_noisy : noisy_trainset_56spk_wav
+  train_noisy : noisy_trainset_28spk_wav
   test_noisy : noisy_testset_wav
 
 
