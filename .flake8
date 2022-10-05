@@ -1,4 +1,5 @@
 [flake8]
+per-file-ignores = __init__.py:F401
 ignore = E203, E266, E501, W503
 # line length is intentionally set to 80 here because black uses Bugbear
 # See https://github.com/psf/black/blob/master/README.md#line-length for more details

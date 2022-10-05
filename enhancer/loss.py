@@ -17,8 +17,8 @@ class mean_squared_error(nn.Module):
 
         if prediction.size() != target.size() or target.ndim < 3:
             raise TypeError(
-                f"""Inputs must be of the same shape (batch_size,channels,samples) 
-                            got {prediction.size()} and {target.size()} instead"""
+                f"""Inputs must be of the same shape (batch_size,channels,samples)
+                    got {prediction.size()} and {target.size()} instead"""
             )
 
         return self.loss_fun(prediction, target)
@@ -39,7 +39,7 @@ class mean_absolute_error(nn.Module):
 
         if prediction.size() != target.size() or target.ndim < 3:
             raise TypeError(
-                f"""Inputs must be of the same shape (batch_size,channels,samples) 
+                f"""Inputs must be of the same shape (batch_size,channels,samples)
                             got {prediction.size()} and {target.size()} instead"""
             )
 
@@ -65,7 +65,7 @@ class Si_SDR(nn.Module):
 
         if prediction.size() != target.size() or target.ndim < 3:
             raise TypeError(
-                f"""Inputs must be of the same shape (batch_size,channels,samples) 
+                f"""Inputs must be of the same shape (batch_size,channels,samples)
                             got {prediction.size()} and {target.size()} instead"""
             )
 
@@ -119,7 +119,8 @@ class Avergeloss(nn.Module):
     def validate_loss(self, loss: str):
         if loss not in LOSS_MAP.keys():
             raise ValueError(
-                f"Invalid loss function {loss}, available loss functions are {tuple([loss for loss in LOSS_MAP.keys()])}"
+                f"""Invalid loss function {loss}, available loss functions are
+                    {tuple([loss for loss in LOSS_MAP.keys()])}"""
             )
         else:
             return LOSS_MAP[loss]
