@@ -1,6 +1,5 @@
-from asyncio import base_tasks
-import torch
 import pytest
+import torch
 
 from enhancer.loss import mean_absolute_error, mean_squared_error
 

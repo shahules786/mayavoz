@@ -1,11 +1,12 @@
 import logging
+from typing import List, Optional, Union
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from typing import Optional, Union, List
 
-from enhancer.models.model import Model
 from enhancer.data.dataset import EnhancerDataset
+from enhancer.models.model import Model
 
 
 class WavenetDecoder(nn.Module):

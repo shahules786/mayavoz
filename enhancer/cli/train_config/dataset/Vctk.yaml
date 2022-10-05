@@ -10,6 +10,3 @@ files:
   test_clean : clean_testset_wav
   train_noisy : noisy_trainset_28spk_wav
   test_noisy : noisy_testset_wav
-
-
-

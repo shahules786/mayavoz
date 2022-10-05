@@ -1,10 +1,9 @@
 import pytest
 import torch
-from enhancer import data
 
-from enhancer.utils.config import Files
-from enhancer.models import WaveUnet
 from enhancer.data.dataset import EnhancerDataset
+from enhancer.models import WaveUnet
+from enhancer.utils.config import Files
 
 
 @pytest.fixture
@@ -41,4 +40,4 @@ def test_forward(batch_size, samples):
 )
 def test_demucs_init(dataset, channels, loss):
     with torch.no_grad():
-        model = WaveUnet(num_channels=channels, dataset=dataset, loss=loss)
+        _ = WaveUnet(num_channels=channels, dataset=dataset, loss=loss)

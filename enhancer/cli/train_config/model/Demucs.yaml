@@ -14,5 +14,3 @@ encoder_decoder:
 lstm:
   bidirectional: False
   num_layers: 2
-
-  
