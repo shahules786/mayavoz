@@ -1,10 +1,10 @@
 import pytest
 import torch
-from enhancer import data
 
-from enhancer.utils.config import Files
-from enhancer.models import Demucs
+from enhancer import data
 from enhancer.data.dataset import EnhancerDataset
+from enhancer.models import Demucs
+from enhancer.utils.config import Files
 
 
 @pytest.fixture
