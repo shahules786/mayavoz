@@ -18,9 +18,15 @@ repos:
       - id: isort
         args: ["--profile", "black"]
 
+    - repo: https://gitlab.com/pycqa/flake8
+      rev: 5.0.4
+      hooks:
+      - id: flake8
+        args: ['--ignore=E203,E501,F811,E712,W503']
+
     # Formatting, Whitespace, etc
-    - repo: git://github.com/pre-commit/pre-commit-hooks
-      rev: v2.20.0
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v3.2.0
       hooks:
       - id: trailing-whitespace
       - id: check-added-large-files
@@ -35,5 +41,3 @@ repos:
       - id: requirements-txt-fixer
       - id: mixed-line-ending
         args: ['--fix=no']
-      - id: flake8
-        args: ['--ignore=E203,E501,F811,E712,W503']
