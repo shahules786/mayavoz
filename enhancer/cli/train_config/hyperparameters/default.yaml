@@ -5,4 +5,3 @@ ReduceLr_patience : 5
 ReduceLr_factor : 0.1
 min_lr : 0.000001
 EarlyStopping_factor : 10
-
