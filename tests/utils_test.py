@@ -31,7 +31,6 @@ def test_fileprocessor_vctk():
         "vctk",
         "tests/data/vctk/clean_testset_wav",
         "tests/data/vctk/noisy_testset_wav",
-        48000,
     )
     matching_dict = fp.prepare_matching_dict()
     assert len(matching_dict) == 2
@@ -39,7 +38,7 @@ def test_fileprocessor_vctk():
 
 @pytest.mark.parametrize("dataset_name", ["vctk", "dns-2020"])
 def test_fileprocessor_names(dataset_name):
-    fp = Fileprocessor.from_name(dataset_name, "clean_dir", "noisy_dir", 16000)
+    fp = Fileprocessor.from_name(dataset_name, "clean_dir", "noisy_dir")
     assert hasattr(fp.matching_function, "__call__")
 
 
