@@ -217,8 +217,7 @@ class Model(pl.LightningModule):
             to True or to a string containing your hugginface.co authentication
             token that can be obtained by running `huggingface-cli login`
         cache_dir: Path or str, optional
-            Path to model cache directory. Defaults to content of PYANNOTE_CACHE
-            environment variable, or "~/.cache/torch/pyannote" when unset.
+            Path to model cache directory
         kwargs: optional
             Any extra keyword args needed to init the model.
             Can also be used to override saved hyperparameter values.
