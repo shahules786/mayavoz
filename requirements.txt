@@ -1,6 +1,4 @@
-black>=22.8.0
 boto3>=1.24.86
-flake8>=5.0.4
 huggingface-hub>=0.10.0
 hydra-core>=1.2.0
 joblib>=1.2.0

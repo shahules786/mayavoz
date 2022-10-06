@@ -91,7 +91,7 @@ class Inference:
         window_size: int,
         total_frames: int,
         step_size: Optional[int] = None,
-        window="hanning",
+        window="hamming",
     ):
         """
         stitch batched waveform into single waveform. (Overlap-add)

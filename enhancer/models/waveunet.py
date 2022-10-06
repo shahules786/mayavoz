@@ -107,7 +107,7 @@ class WaveUnet(Model):
         )
         if dataset is not None:
             if sampling_rate != dataset.sampling_rate:
-                logging.warn(
+                logging.warning(
                     f"model sampling rate {sampling_rate} should match dataset sampling rate {dataset.sampling_rate}"
                 )
                 sampling_rate = dataset.sampling_rate
