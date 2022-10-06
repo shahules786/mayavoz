@@ -74,9 +74,9 @@ class Model(pl.LightningModule):
     def loss(self, loss):
 
         if isinstance(loss, str):
-            losses = [loss]
+            loss = [loss]
 
-        self._loss = Avergeloss(losses)
+        self._loss = Avergeloss(loss)
 
     @property
     def metric(self):
