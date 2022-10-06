@@ -18,7 +18,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v1.1.1
-      env : 
+      env :
         ACTIONS_ALLOW_UNSECURE_COMMANDS : true
       with:
         python-version: ${{ matrix.python-version }}
@@ -38,12 +38,12 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install black flake8 pytest
+        pip install black flake8 pytest-cov
     - name: Run black
       run:
         black --check .
     - name: Run flake8
       run: flake8
     - name: Test with pytest
-        run:
-          pytest tests
+      run:
+        pytest tests --cov=enhancer/
