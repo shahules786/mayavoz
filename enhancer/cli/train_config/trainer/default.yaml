@@ -9,7 +9,7 @@ benchmark: False
 check_val_every_n_epoch: 1
 detect_anomaly: False
 deterministic: False
-devices: -1
+devices: auto
 enable_checkpointing: True
 enable_model_summary: True
 enable_progress_bar: True
@@ -24,7 +24,6 @@ limit_train_batches: 1.0
 limit_val_batches: 1.0
 log_every_n_steps: 50
 max_epochs: 10
-max_steps: null
 max_time: null
 min_epochs: 1
 min_steps: null
