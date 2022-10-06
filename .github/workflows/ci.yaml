@@ -44,9 +44,9 @@ jobs:
           pip install -e .[dev,testing]
     - name: Run black
       run:
-        black --check .
+        black --check .  --exclude version.py
     - name: Run flake8
-      run: flake8
+      run: flake8   --max-line-length 120 --exclude __init__.py  --ignore errors E203
     - name: Test with pytest
       run:
         pytest tests --cov=enhancer/
