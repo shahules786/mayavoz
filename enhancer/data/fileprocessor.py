@@ -98,6 +98,10 @@ class Fileprocessor:
                 return cls(clean_dir, noisy_dir, ProcessorFunctions.one_to_one)
             elif name.lower() == "dns-2020":
                 return cls(clean_dir, noisy_dir, ProcessorFunctions.one_to_many)
+            else:
+                raise ValueError(
+                    f"Invalid matching function, Please use valid matching function from {MATCHING_FNS}"
+                )
         else:
             if matching_function not in MATCHING_FNS:
                 raise ValueError(
