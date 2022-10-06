@@ -39,6 +39,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install black flake8 pytest-cov
+    - name: Install enhancer
+      run: |
+          pip install -e .[dev,testing]
     - name: Run black
       run:
         black --check .
