@@ -44,7 +44,7 @@ jobs:
           pip install -e .[dev,testing]
     - name: Run black
       run:
-        black --check .  --exclude version.py¯
+        black --check .  --exclude enhancer/version.py¯
     - name: Test with pytest
       run:
         pytest tests --cov=enhancer/
