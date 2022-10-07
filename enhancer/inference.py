@@ -139,7 +139,9 @@ class Inference:
         if filename.is_file():
             raise FileExistsError(f"file {filename} already exists")
         else:
-            wavfile.write(filename, rate=sr, data=waveform.detach().cpu())
+            wavfile.write(
+                filename, rate=sr, data=waveform.detach().cpu().numpy()
+            )
 
     @staticmethod
     def prepare_output(

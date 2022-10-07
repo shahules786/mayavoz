@@ -11,10 +11,10 @@ from huggingface_hub import cached_download, hf_hub_url
 from pytorch_lightning.utilities.cloud_io import load as pl_load
 from torch.optim import Adam
 
-from enhancer import __version__
 from enhancer.data.dataset import EnhancerDataset
 from enhancer.inference import Inference
 from enhancer.loss import Avergeloss
+from enhancer.version import __version__
 
 CACHE_DIR = ""
 HF_TORCH_WEIGHTS = ""
@@ -120,7 +120,11 @@ class Model(pl.LightningModule):
 
         loss = self.loss(prediction, target)
 
-        if self.logger:
+        if (
+            (self.logger)
+            and (self.global_step > 50)
+            and (self.global_step % 50 == 0)
+        ):
             self.logger.experiment.log_metric(
                 run_id=self.logger.run_id,
                 key="train_loss",
@@ -141,7 +145,11 @@ class Model(pl.LightningModule):
         self.log("val_metric", metric_val.item())
         self.log("val_loss", loss_val.item())
 
-        if self.logger:
+        if (
+            (self.logger)
+            and (self.global_step > 50)
+            and (self.global_step % 50 == 0)
+        ):
             self.logger.experiment.log_metric(
                 run_id=self.logger.run_id,
                 key="val_loss",
@@ -209,8 +217,7 @@ class Model(pl.LightningModule):
             to True or to a string containing your hugginface.co authentication
             token that can be obtained by running `huggingface-cli login`
         cache_dir: Path or str, optional
-            Path to model cache directory. Defaults to content of PYANNOTE_CACHE
-            environment variable, or "~/.cache/torch/pyannote" when unset.
+            Path to model cache directory
         kwargs: optional
             Any extra keyword args needed to init the model.
             Can also be used to override saved hyperparameter values.
@@ -290,10 +297,9 @@ class Model(pl.LightningModule):
         ), f"Expected batch with 3 dimensions (batch,channels,samples) got only {batch.ndim}"
         batch_predictions = []
         self.eval().to(self.device)
-
         with torch.no_grad():
             for batch_id in range(0, batch.shape[0], batch_size):
-                batch_data = batch[batch_id : batch_id + batch_size, :, :].to(
+                batch_data = batch[batch_id : (batch_id + batch_size), :, :].to(
                     self.device
                 )
                 prediction = self(batch_data)

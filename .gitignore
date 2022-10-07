@@ -1,4 +1,5 @@
 #local
+*.ckpt
 cli/train_config/dataset/Vctk_local.yaml
 .DS_Store
 outputs/
