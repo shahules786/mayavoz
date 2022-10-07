@@ -2,10 +2,9 @@ _target_: enhancer.data.dataset.EnhancerDataset
 root_dir : /Users/shahules/Myprojects/enhancer/datasets/vctk_test
 name : dns-2020
 duration : 1.0
-sampling_rate: 16000
+sampling_rate: 8000
 batch_size: 32
 files:
-  root_dir : /Users/shahules/Myprojects/enhancer/datasets/vctk_test
   train_clean : clean_test_wav
   test_clean : clean_test_wav
   train_noisy : clean_test_wav
