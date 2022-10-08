@@ -6,7 +6,7 @@ auto_lr_find: False
 auto_scale_batch_size: False
 auto_select_gpus: True
 benchmark: False
-check_val_every_n_epoch: 10
+check_val_every_n_epoch: 1
 detect_anomaly: False
 deterministic: False
 devices: 2
@@ -23,7 +23,7 @@ limit_test_batches: 1.0
 limit_train_batches: 1.0
 limit_val_batches: 1.0
 log_every_n_steps: 50
-max_epochs: 500
+max_epochs: 10
 max_time: null
 min_epochs: 1
 min_steps: null
