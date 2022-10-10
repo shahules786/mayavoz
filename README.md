@@ -6,10 +6,10 @@ mayavoz is a Pytorch-based opensource toolkit for speech enhancement. It is desi
 
 * Various pretrained models nicely integrated with huggingface 	:hugs: that users can select and use without any hastle.
 * :package: Ability to train and validation your own custom speech enhancement models with just under 10 lines of code!
-* A command line tool that facilitates training of highly customisable speech enhacement models from the terminal itself!
-* Supports multi-gpu training integrated with Pytorch Lightning.
+* :magic_wand: A command line tool that facilitates training of highly customisable speech enhacement models from the terminal itself!
+* :zap: Supports multi-gpu training integrated with Pytorch Lightning.
 
-## Quick Start
+## Quick Start :fire:
 ``` python
 from mayavoz import Mayamodel
 
