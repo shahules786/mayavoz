@@ -110,6 +110,7 @@ class Model(pl.LightningModule):
 
     def setup(self, stage: Optional[str] = None):
         if stage == "fit":
+            torch.cuda.empty_cache()
             self.dataset.setup(stage)
             self.dataset.model = self
 
