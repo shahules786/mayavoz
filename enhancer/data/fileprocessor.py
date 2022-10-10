@@ -55,7 +55,7 @@ class ProcessorFunctions:
         One clean audio have multiple noisy audio files
         """
 
-        matching_wavfiles = dict()
+        matching_wavfiles = list()
         clean_filenames = [
             file.split("/")[-1]
             for file in glob.glob(os.path.join(clean_path, "*.wav"))
@@ -73,7 +73,7 @@ class ProcessorFunctions:
                 if (clean_file.shape[-1] == noisy_file.shape[-1]) and (
                     sr_clean == sr_noisy
                 ):
-                    matching_wavfiles.update(
+                    matching_wavfiles.append(
                         {
                             "clean": os.path.join(clean_path, clean_file),
                             "noisy": noisy_file,

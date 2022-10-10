@@ -5,6 +5,7 @@ from typing import Optional
 
 import pytorch_lightning as pl
 import torch.nn.functional as F
+from sklearn.model_selection import train_test_split
 from torch.utils.data import DataLoader, Dataset, IterableDataset
 
 from enhancer.data.fileprocessor import Fileprocessor
@@ -36,12 +37,24 @@ class ValidDataset(Dataset):
         return self.dataset.val__len__()
 
 
+class TestDataset(Dataset):
+    def __init__(self, dataset):
+        self.dataset = dataset
+
+    def __getitem__(self, idx):
+        return self.dataset.test__getitem__(idx)
+
+    def __len__(self):
+        return self.dataset.test__len__()
+
+
 class TaskDataset(pl.LightningDataModule):
     def __init__(
         self,
         name: str,
         root_dir: str,
         files: Files,
+        valid_size: float = 0.20,
         duration: float = 1.0,
         sampling_rate: int = 48000,
         matching_function=None,
@@ -60,8 +73,15 @@ class TaskDataset(pl.LightningDataModule):
         if num_workers is None:
             num_workers = multiprocessing.cpu_count() // 2
         self.num_workers = num_workers
+        if valid_size > 0.0:
+            self.valid_size = valid_size
+        else:
+            raise ValueError("valid_size must be greater than 0")
 
     def setup(self, stage: Optional[str] = None):
+        """
+        prepare train/validation/test data splits
+        """
 
         if stage in ("fit", None):
 
@@ -70,25 +90,33 @@ class TaskDataset(pl.LightningDataModule):
             fp = Fileprocessor.from_name(
                 self.name, train_clean, train_noisy, self.matching_function
             )
-            self.train_data = fp.prepare_matching_dict()
-
-            val_clean = os.path.join(self.root_dir, self.files.test_clean)
-            val_noisy = os.path.join(self.root_dir, self.files.test_noisy)
-            fp = Fileprocessor.from_name(
-                self.name, val_clean, val_noisy, self.matching_function
+            train_data = fp.prepare_matching_dict()
+            self.train_data, self.val_data = train_test_split(
+                train_data, test_size=0.20, shuffle=True, random_state=42
             )
-            val_data = fp.prepare_matching_dict()
 
-            for item in val_data:
-                clean, noisy, total_dur = item.values()
-                if total_dur < self.duration:
-                    continue
-                num_segments = round(total_dur / self.duration)
-                for index in range(num_segments):
-                    start_time = index * self.duration
-                    self._validation.append(
-                        ({"clean": clean, "noisy": noisy}, start_time)
-                    )
+            self._validation = self.prepare_mapstype(self.val_data)
+
+            test_clean = os.path.join(self.root_dir, self.files.test_clean)
+            test_noisy = os.path.join(self.root_dir, self.files.test_noisy)
+            fp = Fileprocessor.from_name(
+                self.name, test_clean, test_noisy, self.matching_function
+            )
+            test_data = fp.prepare_matching_dict()
+            self._test = self.prepare_mapstype(test_data)
+
+    def prepare_mapstype(self, data):
+
+        metadata = []
+        for item in data:
+            clean, noisy, total_dur = item.values()
+            if total_dur < self.duration:
+                continue
+            num_segments = round(total_dur / self.duration)
+            for index in range(num_segments):
+                start_time = index * self.duration
+                metadata.append(({"clean": clean, "noisy": noisy}, start_time))
+        return metadata
 
     def train_dataloader(self):
         return DataLoader(
@@ -100,6 +128,13 @@ class TaskDataset(pl.LightningDataModule):
     def val_dataloader(self):
         return DataLoader(
             ValidDataset(self),
+            batch_size=self.batch_size,
+            num_workers=self.num_workers,
+        )
+
+    def test_dataloader(self):
+        return DataLoader(
+            TestDataset(self),
             batch_size=self.batch_size,
             num_workers=self.num_workers,
         )
@@ -137,6 +172,7 @@ class EnhancerDataset(TaskDataset):
         name: str,
         root_dir: str,
         files: Files,
+        valid_size=0.2,
         duration=1.0,
         sampling_rate=48000,
         matching_function=None,
@@ -148,6 +184,7 @@ class EnhancerDataset(TaskDataset):
             name=name,
             root_dir=root_dir,
             files=files,
+            valid_size=valid_size,
             sampling_rate=sampling_rate,
             duration=duration,
             matching_function=matching_function,
@@ -182,6 +219,9 @@ class EnhancerDataset(TaskDataset):
 
     def val__getitem__(self, idx):
         return self.prepare_segment(*self._validation[idx])
+
+    def test__getitem__(self, idx):
+        return self.prepare_segment(*self._test[idx])
 
     def prepare_segment(self, file_dict: dict, start_time: float):
 
@@ -218,3 +258,6 @@ class EnhancerDataset(TaskDataset):
 
     def val__len__(self):
         return len(self._validation)
+
+    def test__len__(self):
+        return len(self._test)
