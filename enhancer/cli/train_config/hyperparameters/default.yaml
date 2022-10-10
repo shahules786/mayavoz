@@ -1,5 +1,5 @@
 loss : mse
-metric : mse
+metric : [mse,pesq,stoi]
 lr : 0.001
 ReduceLr_patience : 10
 ReduceLr_factor : 0.1
