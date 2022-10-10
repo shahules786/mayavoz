@@ -181,11 +181,13 @@ class Model(pl.LightningModule):
             value = metric(target, prediction)
             metric_dict[metric.name] = value
 
-        self.logger.experiment.log_metrics(
-            run_id=self.logger.run_id,
-            metrics=metric_dict,
-            step=self.global_step,
-        )
+        for k, v in metric_dict.items():
+            self.logger.experiment.log_metric(
+                run_id=self.logger.run_id,
+                key=k,
+                value=v,
+                step=self.global_step,
+            )
 
         return metric_dict
 
