@@ -236,7 +236,7 @@ class Demucs(Model):
                 self.hparams.sampling_rate,
             )
 
-        out = x[..., :length].clone()
+        out = x[..., :length]
         return out
 
     def get_padding_length(self, input_length):
