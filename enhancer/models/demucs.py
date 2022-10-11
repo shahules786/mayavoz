@@ -226,7 +226,7 @@ class Demucs(Model):
         x = x.permute(0, 2, 1)
         for decoder in self.decoder:
             skip_connection = encoder_outputs.pop(-1)
-            x += skip_connection[..., : x.shape[-1]]
+            x = x + skip_connection[..., : x.shape[-1]]
             x = decoder(x)
 
         if self.hparams.resample > 1:
@@ -236,7 +236,8 @@ class Demucs(Model):
                 self.hparams.sampling_rate,
             )
 
-        return x[..., :length]
+        out = x[..., :length]
+        return out
 
     def get_padding_length(self, input_length):
 
