@@ -40,7 +40,7 @@ def main(config: DictConfig):
         dirpath="./model",
         filename=f"model_{JOB_ID}",
         monitor="val_loss",
-        verbose=True,
+        verbose=False,
         mode=direction,
         every_n_epochs=1,
     )
