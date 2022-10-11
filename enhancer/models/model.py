@@ -230,13 +230,10 @@ class Model(pl.LightningModule):
         for metric in test_mean_metrics.keys():
             test_mean_metrics[metric] /= len(outputs)
 
-        for k, v in test_mean_metrics.items():
-            self.logger.experiment.log_metric(
-                run_id=self.logger.run_id,
-                key=k,
-                value=v,
-                step=self.current_epoch,
-            )
+        print("----------TEST REPORT----------\n")
+        for metric in test_mean_metrics.keys():
+            print(f"|{metric.upper()} | {test_mean_metrics[metric]} |")
+        print("--------------------------------")
 
     def on_save_checkpoint(self, checkpoint):
 
