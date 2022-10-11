@@ -1,10 +1,10 @@
 _target_: enhancer.models.demucs.Demucs
 num_channels: 1
-resample: 1
+resample: 2
 sampling_rate : 16000
 
 encoder_decoder:
-  depth: 3
+  depth: 5
   initial_output_channels: 32
   kernel_size: 8
   stride: 4
@@ -13,4 +13,4 @@ encoder_decoder:
 
 lstm:
   bidirectional: False
-  num_layers: 1
+  num_layers: 2
