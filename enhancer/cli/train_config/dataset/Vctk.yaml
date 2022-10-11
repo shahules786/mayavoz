@@ -1,9 +1,9 @@
 _target_: enhancer.data.dataset.EnhancerDataset
 name : vctk
 root_dir : /scratch/c.sistc3/DS_10283_2791
-duration : 1.0
+duration : 2.0
 sampling_rate: 16000
-batch_size: 64
+batch_size: 32
 
 files:
   train_clean : clean_trainset_28spk_wav
