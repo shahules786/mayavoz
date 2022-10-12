@@ -4,7 +4,7 @@ from types import MethodType
 import hydra
 from hydra.utils import instantiate
 from omegaconf import DictConfig, OmegaConf
-from pytorch_lightning.callbacks import EarlyStopping, ModelCheckpoint
+from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import MLFlowLogger
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 
@@ -39,21 +39,21 @@ def main(config: DictConfig):
     checkpoint = ModelCheckpoint(
         dirpath="./model",
         filename=f"model_{JOB_ID}",
-        monitor="val_loss",
+        monitor="valid_loss",
         verbose=False,
         mode=direction,
         every_n_epochs=1,
     )
     callbacks.append(checkpoint)
-    early_stopping = EarlyStopping(
-        monitor="val_loss",
-        mode=direction,
-        min_delta=1e-7,
-        patience=parameters.get("EarlyStopping_patience", 10),
-        strict=True,
-        verbose=True,
-    )
-    callbacks.append(early_stopping)
+    # early_stopping = EarlyStopping(
+    #     monitor="val_loss",
+    #     mode=direction,
+    #     min_delta=0.0,
+    #     patience=parameters.get("EarlyStopping_patience", 10),
+    #     strict=True,
+    #     verbose=False,
+    # )
+    # callbacks.append(early_stopping)
 
     def configure_optimizer(self):
         optimizer = instantiate(

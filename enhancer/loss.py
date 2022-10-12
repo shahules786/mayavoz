@@ -151,9 +151,11 @@ class LossWrapper(nn.Module):
             )
 
         self.higher_better = direction[0]
+        self.name = ""
         for loss in losses:
             loss = self.validate_loss(loss)
             self.valid_losses.append(loss())
+            self.name += f"{loss().name}_"
 
     def validate_loss(self, loss: str):
         if loss not in LOSS_MAP.keys():
