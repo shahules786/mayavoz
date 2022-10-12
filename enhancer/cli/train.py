@@ -48,10 +48,10 @@ def main(config: DictConfig):
     early_stopping = EarlyStopping(
         monitor="val_loss",
         mode=direction,
-        min_delta=0.0,
+        min_delta=1e-7,
         patience=parameters.get("EarlyStopping_patience", 10),
         strict=True,
-        verbose=False,
+        verbose=True,
     )
     callbacks.append(early_stopping)
 
