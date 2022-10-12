@@ -126,7 +126,7 @@ class Pesq:
             return self.pesq(prediction, target)
         except Exception as e:
             logging.warning(f"{e} error occured while calculating PESQ")
-            return 0.0
+            return torch.tensor(0.0)
 
 
 class LossWrapper(nn.Module):
