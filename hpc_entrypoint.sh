@@ -36,4 +36,4 @@ pwd
 #python transcriber/tasks/embeddings/timit.py --directory /scratch/$USER/TIMIT/data/lisa/data/timit/raw/TIMIT/TEST --output ./data/test
 
 echo "Start Training..."
-python cli/train.py
+python enhancer/cli/train.py
