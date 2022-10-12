@@ -135,7 +135,7 @@ class Model(pl.LightningModule):
         loss = self.loss(prediction, target)
 
         self.log(
-            "train_loss",
+            f"train_{self.loss.name}",
             loss.item(),
             on_epoch=True,
             on_step=True,
@@ -175,7 +175,7 @@ class Model(pl.LightningModule):
 
         for metric in self.metric:
             value = metric(target, prediction)
-            metric_dict[metric.name] = value
+            metric_dict[f"test_{metric.name}"] = value
 
         self.log_dict(
             metric_dict,
