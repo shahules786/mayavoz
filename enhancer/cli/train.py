@@ -39,7 +39,7 @@ def main(config: DictConfig):
     checkpoint = ModelCheckpoint(
         dirpath="./model",
         filename=f"model_{JOB_ID}",
-        monitor="val_loss",
+        monitor="valid_loss",
         verbose=False,
         mode=direction,
         every_n_epochs=1,
