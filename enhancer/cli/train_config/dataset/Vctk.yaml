@@ -1,7 +1,7 @@
 _target_: enhancer.data.dataset.EnhancerDataset
 name : vctk
 root_dir : /scratch/c.sistc3/DS_10283_2791
-duration : 1.0
+duration : 1.5
 sampling_rate: 16000
 batch_size: 256
 valid_size : 0.05
