@@ -123,6 +123,11 @@ class Model(pl.LightningModule):
                 self.dataset.val_dataloader().dataset.__len__() / 60,
                 "minutes",
             )
+            print(
+                "Total test duration",
+                self.dataset.test_dataloader().dataset.__len__() / 60,
+                "minutes",
+            )
             self.dataset.model = self
 
     def train_dataloader(self):
