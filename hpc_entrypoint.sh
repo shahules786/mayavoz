@@ -36,5 +36,7 @@ pwd
 #python transcriber/tasks/embeddings/timit.py --directory /scratch/$USER/TIMIT/data/lisa/data/timit/raw/TIMIT/TEST --output ./data/test
 python noisyspeech_synthesizer.py
 echo "files"
-ls /scratch/c.sistc3/MS-SNSD
+mkdir /scratch/c.sistc3/MS-SNSD/DNS10
+mv ./CleanSpeech_training/ /scratch/c.sistc3/MS-SNSD/DNS10
+mv ./NoisySpeech_training/ /scratch/c.sistc3/MS-SNSD/DNS10
 #python enhancer/cli/train.py
