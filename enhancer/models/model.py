@@ -115,16 +115,12 @@ class Model(pl.LightningModule):
             self.dataset.setup(stage)
             print(
                 "Total train duration",
-                self.dataset.train_dataloader().__len__()
-                * self.dataset.duration
-                / 60,
+                self.dataset.train_dataloader().dataset.__len__() / 60,
                 "minutes",
             )
             print(
                 "Total validation duration",
-                self.dataset.val_dataloader().__len__()
-                * self.dataset.duration
-                / 60,
+                self.dataset.val_dataloader().dataset.__len__() / 60,
                 "minutes",
             )
             self.dataset.model = self
