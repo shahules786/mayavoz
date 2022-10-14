@@ -2,7 +2,6 @@
 line-length = 80
 target-version = ['py38']
 exclude = '''
-
 (
   /(
       \.eggs         # exclude a few common directories in the
@@ -10,6 +9,9 @@ exclude = '''
     | \.mypy_cache
     | \.tox
     | \.venv
+    | noisyspeech_synthesizer.py
+    | noisyspeech_synthesizer.cfg
+
   )/
 )
 '''

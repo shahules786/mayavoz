@@ -34,6 +34,6 @@ pwd
 
 #python transcriber/tasks/embeddings/timit.py --directory /scratch/$USER/TIMIT/data/lisa/data/timit/raw/TIMIT/TRAIN --output ./data/train
 #python transcriber/tasks/embeddings/timit.py --directory /scratch/$USER/TIMIT/data/lisa/data/timit/raw/TIMIT/TEST --output ./data/test
-
+python noisyspeech_synthesizer.py
 echo "Start Training..."
-python enhancer/cli/train.py
+#python enhancer/cli/train.py
