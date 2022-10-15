@@ -27,23 +27,23 @@ def main(cfg):
         noise_dir = cfg["noise_dir"]
     if not os.path.exists(noise_dir):
         assert False, "Noise data is required"
-
+    name = cfg["naming"]
     fs = float(cfg["sampling_rate"])
     audioformat = cfg["audioformat"]
     total_hours = float(cfg["total_hours"])
     audio_length = float(cfg["audio_length"])
     silence_length = float(cfg["silence_length"])
     noisyspeech_dir = os.path.join(
-        os.path.dirname(__file__), "NoisySpeech_training"
+        os.path.dirname(__file__), f"NoisySpeech_{name}ing"
     )
     if not os.path.exists(noisyspeech_dir):
         os.makedirs(noisyspeech_dir)
     clean_proc_dir = os.path.join(
-        os.path.dirname(__file__), "CleanSpeech_training"
+        os.path.dirname(__file__), f"CleanSpeech_{name}ing"
     )
     if not os.path.exists(clean_proc_dir):
         os.makedirs(clean_proc_dir)
-    noise_proc_dir = os.path.join(os.path.dirname(__file__), "Noise_training")
+    noise_proc_dir = os.path.join(os.path.dirname(__file__), f"Noise_{name}ing")
     if not os.path.exists(noise_proc_dir):
         os.makedirs(noise_proc_dir)
 
