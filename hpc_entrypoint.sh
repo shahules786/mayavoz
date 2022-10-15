@@ -39,4 +39,5 @@ echo "files"
 #mkdir /scratch/c.sistc3/MS-SNSD/DNS10
 mv ./CleanSpeech_testing/ /scratch/c.sistc3/MS-SNSD/DNS10
 mv ./NoisySpeech_testing/ /scratch/c.sistc3/MS-SNSD/DNS10
+ls /scratch/c.sistc3/MS-SNSD/DNS10
 #python enhancer/cli/train.py
