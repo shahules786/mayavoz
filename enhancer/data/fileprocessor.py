@@ -62,25 +62,24 @@ class ProcessorFunctions:
         ]
         for clean_file in clean_filenames:
             noisy_filenames = glob.glob(
-                os.path.join(noisy_path, f"*_{clean_file}.wav")
+                os.path.join(noisy_path, f"*_{clean_file}")
             )
             for noisy_file in noisy_filenames:
 
-                sr_clean, clean_file = wavfile.read(
+                sr_clean, clean_wav = wavfile.read(
                     os.path.join(clean_path, clean_file)
                 )
-                sr_noisy, noisy_file = wavfile.read(noisy_file)
-                if (clean_file.shape[-1] == noisy_file.shape[-1]) and (
+                sr_noisy, noisy_wav = wavfile.read(noisy_file)
+                if (clean_wav.shape[-1] == noisy_wav.shape[-1]) and (
                     sr_clean == sr_noisy
                 ):
                     matching_wavfiles.append(
                         {
                             "clean": os.path.join(clean_path, clean_file),
                             "noisy": noisy_file,
-                            "duration": clean_file.shape[-1] / sr_clean,
+                            "duration": clean_wav.shape[-1] / sr_clean,
                         }
                     )
-
         return matching_wavfiles
 
 
