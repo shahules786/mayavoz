@@ -37,6 +37,9 @@ pwd
 python noisyspeech_synthesizer.py
 echo "files"
 #mkdir /scratch/c.sistc3/MS-SNSD/DNS10
+rm -rf /scratch/c.sistc3/MS-SNSD/DNS10/CleanSpeech_testing
+rm -rf /scratch/c.sistc3/MS-SNSD/DNS10/NoisySpeech_testing
+
 mv ./CleanSpeech_testing/ /scratch/c.sistc3/MS-SNSD/DNS10
 mv ./NoisySpeech_testing/ /scratch/c.sistc3/MS-SNSD/DNS10
 ls /scratch/c.sistc3/MS-SNSD/DNS10

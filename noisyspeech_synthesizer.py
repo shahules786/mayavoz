@@ -43,7 +43,9 @@ def main(cfg):
     )
     if not os.path.exists(clean_proc_dir):
         os.makedirs(clean_proc_dir)
-    noise_proc_dir = os.path.join(os.path.dirname(__file__), f"Noise_{name}ing")
+    noise_proc_dir = os.path.join(
+        os.path.dirname(__file__), f"NoisySpeech_{name}ing"
+    )
     if not os.path.exists(noise_proc_dir):
         os.makedirs(noise_proc_dir)
 
