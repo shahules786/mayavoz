@@ -6,7 +6,7 @@ sampling_rate: 16000
 batch_size: 64
 valid_size: 0.05
 files:
-  train_clean : Clean_training
-  test_clean : Clean_testing
-  train_noisy : Noisy_training
-  test_noisy : Noisy_testing
+  train_clean : CleanSpeech_training
+  test_clean : CleanSpeech_testing
+  train_noisy : NoisySpeech_training
+  test_noisy : NoisySpeech_testing
