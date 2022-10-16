@@ -47,9 +47,9 @@ def main(config: DictConfig):
     callbacks.append(checkpoint)
     if parameters.get("Early_stop", False):
         early_stopping = EarlyStopping(
-            monitor="val_loss",
+            monitor=f"valid_{parameters.get('EarlyStopping_metric','loss')}",
             mode=direction,
-            min_delta=0.0,
+            min_delta=parameters.get("EarlyStopping_delta", 0.00),
             patience=parameters.get("EarlyStopping_patience", 10),
             strict=True,
             verbose=False,
