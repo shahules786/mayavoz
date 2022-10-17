@@ -7,7 +7,7 @@ batch_size: 128
 valid_size : 0.025
 
 files:
-  train_clean : clean_trainset_28spk_wav
+  train_clean : clean_trainset_56spk_wav
   test_clean : clean_testset_wav
-  train_noisy : noisy_trainset_28spk_wav
+  train_noisy : noisy_trainset_56spk_wav
   test_noisy : noisy_testset_wav

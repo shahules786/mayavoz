@@ -1,6 +1,6 @@
 defaults:
   - model : Demucs
-  - dataset : DNS-2020
+  - dataset : Vctk
   - optimizer : Adam
   - hyperparameters : default
   - trainer : default
