@@ -42,5 +42,5 @@ python noisyspeech_synthesizer.py
 
 mv ./CleanSpeech_training/ /scratch/c.sistc3/MS-SNSD/DNS30
 mv ./NoisySpeech_training/ /scratch/c.sistc3/MS-SNSD/DNS30
-ls /scratch/c.sistc3/MS-SNSD/DNS20
+ls /scratch/c.sistc3/MS-SNSD/DNS30
 #python enhancer/cli/train.py
