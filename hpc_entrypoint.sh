@@ -35,12 +35,12 @@ pwd
 #python transcriber/tasks/embeddings/timit.py --directory /scratch/$USER/TIMIT/data/lisa/data/timit/raw/TIMIT/TRAIN --output ./data/train
 #python transcriber/tasks/embeddings/timit.py --directory /scratch/$USER/TIMIT/data/lisa/data/timit/raw/TIMIT/TEST --output ./data/test
 echo "files"
-mv /scratch/c.sistc3/MS-SNSD/DNS20/CleanSpeech_testing /scratch/c.sistc3/MS-SNSD/DNS20/CleanSpeech_training
-mv /scratch/c.sistc3/MS-SNSD/DNS20/NoisySpeech_testing /scratch/c.sistc3/MS-SNSD/DNS20/NoisySpeech_training
-
+# mv /scratch/c.sistc3/MS-SNSD/DNS20/CleanSpeech_testing /scratch/c.sistc3/MS-SNSD/DNS20/CleanSpeech_training
+# mv /scratch/c.sistc3/MS-SNSD/DNS20/NoisySpeech_testing /scratch/c.sistc3/MS-SNSD/DNS20/NoisySpeech_training
+mkdir /scratch/c.sistc3/MS-SNSD/DNS30
 python noisyspeech_synthesizer.py
 
-mv ./CleanSpeech_testing/ /scratch/c.sistc3/MS-SNSD/DNS20
-mv ./NoisySpeech_testing/ /scratch/c.sistc3/MS-SNSD/DNS20
+mv ./CleanSpeech_training/ /scratch/c.sistc3/MS-SNSD/DNS30
+mv ./NoisySpeech_training/ /scratch/c.sistc3/MS-SNSD/DNS30
 ls /scratch/c.sistc3/MS-SNSD/DNS20
 #python enhancer/cli/train.py
