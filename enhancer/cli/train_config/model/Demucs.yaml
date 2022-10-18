@@ -5,12 +5,12 @@ sampling_rate : 16000
 
 encoder_decoder:
   depth: 5
-  initial_output_channels: 32
+  initial_output_channels: 64
   kernel_size: 8
   stride: 4
   growth_factor: 2
   glu: True
 
 lstm:
-  bidirectional: False
+  bidirectional: True
   num_layers: 2
