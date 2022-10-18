@@ -4,7 +4,7 @@ root_dir : /scratch/c.sistc3/DS_10283_2791
 duration : 3
 sampling_rate: 16000
 batch_size: 128
-valid_size : 0.025
+valid_minutes : 20
 
 files:
   train_clean : clean_trainset_56spk_wav
