@@ -1,6 +1,6 @@
 _target_: enhancer.models.demucs.Demucs
 num_channels: 1
-resample: 4
+resample: 2
 sampling_rate : 16000
 
 encoder_decoder:

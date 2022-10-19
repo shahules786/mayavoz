@@ -3,7 +3,7 @@ root_dir : /scratch/c.sistc3/MS-SNSD/DNS10
 name : dns-2020
 duration : 5.0
 sampling_rate: 16000
-batch_size: 128
+batch_size: 64
 stride: 2
 valid_minutes: 30.0
 files:
