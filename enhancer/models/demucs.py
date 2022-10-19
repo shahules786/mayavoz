@@ -212,6 +212,8 @@ class Demucs(Model):
             waveform = waveform.mean(dim=1, keepdim=True)
             std = waveform.std(dim=-1, keepdim=True)
             waveform = waveform / (self.floor + std)
+        else:
+            std = 1
         length = waveform.shape[-1]
         x = F.pad(waveform, (0, self.get_padding_length(length) - length))
         if self.hparams.resample > 1:
@@ -244,7 +246,7 @@ class Demucs(Model):
             )
 
         out = x[..., :length]
-        return out
+        return std * out
 
     def get_padding_length(self, input_length):
 
