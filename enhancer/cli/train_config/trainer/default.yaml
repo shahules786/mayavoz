@@ -1,5 +1,5 @@
 _target_: pytorch_lightning.Trainer
-accelerator: gpu
+accelerator: cpu
 accumulate_grad_batches: 1
 amp_backend: native
 auto_lr_find: False
