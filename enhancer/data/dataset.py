@@ -185,7 +185,7 @@ class TaskDataset(pl.LightningDataModule):
         output["noisy"] = torch.stack(output["noisy"], dim=0)
         return output
 
-    def worker_init_fn(self):
+    def worker_init_fn(self, _):
         worker_info = torch.utils.data.get_worker_info()
         dataset = worker_info.dataset
         worker_id = worker_info.id
