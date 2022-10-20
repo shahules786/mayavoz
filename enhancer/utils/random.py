@@ -4,7 +4,7 @@ import random
 import torch
 
 
-def create_unique_rng(epoch: int):
+def create_unique_rng(epoch: int, index: int):
     """create unique random number generator for each (worker_id,epoch) combination"""
 
     rng = random.Random()
@@ -29,6 +29,7 @@ def create_unique_rng(epoch: int):
         + local_rank * num_workers
         + node_rank * num_workers * global_rank
         + epoch * num_workers * world_size
+        + index
     )
 
     rng.seed(seed)
