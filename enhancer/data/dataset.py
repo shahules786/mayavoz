@@ -100,6 +100,9 @@ class TaskDataset(pl.LightningDataModule):
 
             self.train_data = self.prepare_traindata(train_data)
             self._validation = self.prepare_mapstype(self.val_data)
+            print(
+                "train_data_size", sum([len(item) for item in self.train_data])
+            )
 
             test_clean = os.path.join(self.root_dir, self.files.test_clean)
             test_noisy = os.path.join(self.root_dir, self.files.test_noisy)
