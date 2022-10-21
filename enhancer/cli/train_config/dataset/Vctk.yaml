@@ -6,7 +6,7 @@ stride : 0.5
 sampling_rate: 16000
 batch_size: 4
 valid_minutes : 1
-
+num_workers: 0
 files:
   train_clean : clean_trainset_28spk_wav
   test_clean : clean_testset_wav
