@@ -346,7 +346,7 @@ class EnhancerDataset(TaskDataset):
         return {
             "clean": clean_segment,
             "noisy": noisy_segment,
-            "name": file_dict["clean"].split("/")[-1] + "->" + start_time,
+            "name": file_dict["clean"].split("/")[-1] + "->" + str(start_time),
         }
 
     def train__len__(self):
