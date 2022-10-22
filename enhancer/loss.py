@@ -3,7 +3,7 @@ import logging
 import numpy as np
 import torch
 import torch.nn as nn
-from torchmetrics.audio.pesq import PerceptualEvaluationSpeechQuality
+from pesq import pesq
 from torchmetrics.audio.stoi import ShortTimeObjectiveIntelligibility
 
 
@@ -122,7 +122,6 @@ class Pesq:
         self.sr = sr
         self.name = "pesq"
         self.mode = mode
-        self.pesq = PerceptualEvaluationSpeechQuality(fs=sr, mode=mode)
 
     def __call__(self, prediction: torch.Tensor, target: torch.Tensor):
 
@@ -130,7 +129,12 @@ class Pesq:
         for pred, target_ in zip(prediction, target):
             try:
                 pesq_values.append(
-                    self.pesq(pred.squeeze(), target_.squeeze()).item()
+                    pesq(
+                        self.sr,
+                        target_.squeeze().detach().numpy(),
+                        pred.squeeze().detach().numpy(),
+                        self.mode,
+                    )
                 )
             except Exception as e:
                 logging.warning(f"{e} error occured while calculating PESQ")
