@@ -77,7 +77,6 @@ class TaskDataset(pl.LightningDataModule):
         if num_workers is None:
             num_workers = multiprocessing.cpu_count() // 2
         self.num_workers = num_workers
-        print("num_workers-main", self.num_workers)
         if valid_minutes > 0.0:
             self.valid_minutes = valid_minutes
         else:
@@ -102,9 +101,6 @@ class TaskDataset(pl.LightningDataModule):
 
             self.train_data = self.prepare_traindata(train_data)
             self._validation = self.prepare_mapstype(self.val_data)
-            print(
-                "train_data_size", sum([len(item) for item in self.train_data])
-            )
 
             test_clean = os.path.join(self.root_dir, self.files.test_clean)
             test_noisy = os.path.join(self.root_dir, self.files.test_noisy)
@@ -349,7 +345,6 @@ class EnhancerDataset(TaskDataset):
         return {
             "clean": clean_segment,
             "noisy": noisy_segment,
-            "name": file_dict["clean"].split("/")[-1] + "->" + str(start_time),
         }
 
     def train__len__(self):
