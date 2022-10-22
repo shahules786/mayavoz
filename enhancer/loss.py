@@ -131,8 +131,8 @@ class Pesq:
                 pesq_values.append(
                     pesq(
                         self.sr,
-                        target_.squeeze().detach().numpy(),
-                        pred.squeeze().detach().numpy(),
+                        target_.squeeze().detach().cpu().numpy(),
+                        pred.squeeze().detach().cpu().numpy(),
                         self.mode,
                     )
                 )
