@@ -360,7 +360,9 @@ class EnhancerDataset(TaskDataset):
             train_data = self.train_data
         else:
             train_data = worker_info.dataset.data
-        return sum([len(item) for item in train_data]) // (self.batch_size)
+        len = sum([len(item) for item in train_data]) // (self.batch_size)
+        print(len)
+        return len
 
     def val__len__(self):
         return len(self._validation)
