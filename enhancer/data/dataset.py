@@ -251,7 +251,7 @@ class EnhancerDataset(TaskDataset):
         files: Files,
         valid_minutes=5.0,
         duration=1.0,
-        stride=0.5,
+        stride=None,
         sampling_rate=48000,
         matching_function=None,
         batch_size=32,
@@ -317,7 +317,7 @@ class EnhancerDataset(TaskDataset):
         return self.prepare_segment(*self._test[idx])
 
     def prepare_segment(self, file_dict: dict, start_time: float):
-        print(file_dict["clean"].split("/")[-1], "->", start_time)
+
         clean_segment = self.audio(
             file_dict["clean"], offset=start_time, duration=self.duration
         )
