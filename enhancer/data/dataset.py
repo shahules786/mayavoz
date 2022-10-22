@@ -361,7 +361,7 @@ class EnhancerDataset(TaskDataset):
         else:
             train_data = worker_info.dataset.data
         len = sum([len(item) for item in train_data]) // (self.batch_size)
-        print(len)
+        print("workers", len)
         return len
 
     def val__len__(self):
