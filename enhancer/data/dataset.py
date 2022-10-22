@@ -150,7 +150,7 @@ class TaskDataset(pl.LightningDataModule):
                     ({"clean": clean, "noisy": noisy}, start)
                 )
             train_data.append(samples_metadata)
-        return train_data[:25]
+        return train_data
 
     @staticmethod
     def get_num_segments(file_duration, duration, stride):
