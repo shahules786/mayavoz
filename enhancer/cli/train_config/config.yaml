@@ -1,5 +1,5 @@
 defaults:
-  - model : WaveUnet
+  - model : Demucs
   - dataset : Vctk
   - optimizer : Adam
   - hyperparameters : default
