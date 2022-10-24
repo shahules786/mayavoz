@@ -14,5 +14,6 @@ scikit-learn>=1.1.2
 scipy>=1.9.1
 soundfile>=0.11.0
 torch>=1.12.1
+torch-audiomentations==0.11.0
 torchaudio>=0.12.1
 tqdm>=4.64.1
