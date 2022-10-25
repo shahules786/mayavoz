@@ -211,6 +211,7 @@ class TaskDataset(pl.LightningDataModule):
             batch_size=self.batch_size,
             num_workers=self.num_workers,
             generator=self.generator,
+            collate_fn=self.train_collatefn,
         )
 
     def val_dataloader(self):
