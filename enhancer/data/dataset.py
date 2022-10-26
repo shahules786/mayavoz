@@ -302,10 +302,11 @@ class EnhancerDataset(TaskDataset):
             if idx >= num_samples:
                 idx -= num_samples
                 continue
-        start = 0
-        if self.duration is not None:
-            start = idx * self.stride
-        return self.prepare_segment(filedict, start)
+            else:
+                start = 0
+                if self.duration is not None:
+                    start = idx * self.stride
+                return self.prepare_segment(filedict, start)
 
     def val__getitem__(self, idx):
         return self.prepare_segment(*self._validation[idx])
