@@ -32,7 +32,7 @@ def main(config: DictConfig):
     parameters = config.hyperparameters
     apply_augmentations = Compose(
         [
-            Shift(min_shift=0.0, max_shift=1.0, shift_unit="seconds", p=0.5),
+            Shift(min_shift=0.5, max_shift=1.0, shift_unit="seconds", p=0.5),
         ]
     )
 
