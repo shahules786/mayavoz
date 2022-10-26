@@ -66,7 +66,7 @@ class Si_SDR:
                 "Invalid reduction, valid options are sum, mean, None"
             )
         self.higher_better = False
-        self.name = "Si-SDR"
+        self.name = "si-sdr"
 
     def __call__(self, prediction: torch.Tensor, target: torch.Tensor):
 
