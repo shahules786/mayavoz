@@ -70,7 +70,7 @@ class Audio:
 
         if sampling_rate:
             audio = self.__class__.resample_audio(
-                audio, self.sampling_rate, sampling_rate
+                audio, sampling_rate, self.sampling_rate
             )
         if self.return_tensor:
             return torch.tensor(audio)
