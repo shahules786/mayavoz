@@ -113,6 +113,8 @@ class Model(pl.LightningModule):
         if stage == "fit":
             torch.cuda.empty_cache()
             self.dataset.setup(stage)
+            self.dataset.model = self
+
             print(
                 "Total train duration",
                 self.dataset.train_dataloader().dataset.__len__()
@@ -134,7 +136,6 @@ class Model(pl.LightningModule):
                 / 60,
                 "minutes",
             )
-            self.dataset.model = self
 
     def train_dataloader(self):
         return self.dataset.train_dataloader()

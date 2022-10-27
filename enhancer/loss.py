@@ -3,7 +3,7 @@ import logging
 import numpy as np
 import torch
 import torch.nn as nn
-from pesq import pesq
+from torchmetrics.audio.pesq import PerceptualEvaluationSpeechQuality
 from torchmetrics.audio.stoi import ShortTimeObjectiveIntelligibility
 
 
@@ -66,7 +66,7 @@ class Si_SDR:
                 "Invalid reduction, valid options are sum, mean, None"
             )
         self.higher_better = False
-        self.name = "Si-SDR"
+        self.name = "si-sdr"
 
     def __call__(self, prediction: torch.Tensor, target: torch.Tensor):
 
@@ -122,20 +122,16 @@ class Pesq:
         self.sr = sr
         self.name = "pesq"
         self.mode = mode
+        self.pesq = PerceptualEvaluationSpeechQuality(
+            fs=self.sr, mode=self.mode
+        )
 
     def __call__(self, prediction: torch.Tensor, target: torch.Tensor):
 
         pesq_values = []
         for pred, target_ in zip(prediction, target):
             try:
-                pesq_values.append(
-                    pesq(
-                        self.sr,
-                        target_.squeeze().detach().cpu().numpy(),
-                        pred.squeeze().detach().cpu().numpy(),
-                        self.mode,
-                    )
-                )
+                pesq_values.append(self.pesq(pred.squeeze(), target_.squeeze()))
             except Exception as e:
                 logging.warning(f"{e} error occured while calculating PESQ")
         return torch.tensor(np.mean(pesq_values))

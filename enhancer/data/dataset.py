@@ -1,14 +1,15 @@
 import math
 import multiprocessing
 import os
-import random
-from itertools import chain, cycle
+from pathlib import Path
 from typing import Optional
 
+import numpy as np
 import pytorch_lightning as pl
 import torch
 import torch.nn.functional as F
-from torch.utils.data import DataLoader, Dataset, IterableDataset
+from torch.utils.data import DataLoader, Dataset
+from torch_audiomentations import Compose
 
 from enhancer.data.fileprocessor import Fileprocessor
 from enhancer.utils import check_files
@@ -16,13 +17,15 @@ from enhancer.utils.config import Files
 from enhancer.utils.io import Audio
 from enhancer.utils.random import create_unique_rng
 
+LARGE_NUM = 2147483647
 
-class TrainDataset(IterableDataset):
+
+class TrainDataset(Dataset):
     def __init__(self, dataset):
         self.dataset = dataset
 
-    def __iter__(self):
-        return self.dataset.train__iter__()
+    def __getitem__(self, idx):
+        return self.dataset.train__getitem__(idx)
 
     def __len__(self):
         return self.dataset.train__len__()
@@ -63,6 +66,7 @@ class TaskDataset(pl.LightningDataModule):
         matching_function=None,
         batch_size=32,
         num_workers: Optional[int] = None,
+        augmentations: Optional[Compose] = None,
     ):
         super().__init__()
 
@@ -81,6 +85,8 @@ class TaskDataset(pl.LightningDataModule):
             self.valid_minutes = valid_minutes
         else:
             raise ValueError("valid_minutes must be greater than 0")
+
+        self.augmentations = augmentations
 
     def setup(self, stage: Optional[str] = None):
         """
@@ -115,16 +121,29 @@ class TaskDataset(pl.LightningDataModule):
     ):
 
         valid_minutes *= 60
-        valid_min_now = 0.0
+        valid_sec_now = 0.0
         valid_indices = []
-        random_indices = list(range(0, len(data)))
-        rng = create_unique_rng(random_state)
-        rng.shuffle(random_indices)
-        i = 0
-        while valid_min_now <= valid_minutes:
-            valid_indices.append(random_indices[i])
-            valid_min_now += data[random_indices[i]]["duration"]
-            i += 1
+        all_speakers = np.unique(
+            [
+                (Path(file["clean"]).name.split("_")[0], file["duration"])
+                for file in data
+            ]
+        )
+        possible_indices = list(range(0, len(all_speakers)))
+        rng = create_unique_rng(len(all_speakers))
+
+        while valid_sec_now <= valid_minutes:
+            speaker_index = rng.choice(possible_indices)
+            possible_indices.remove(speaker_index)
+            speaker_name = all_speakers[speaker_index]
+            file_indices = [
+                i
+                for i, file in enumerate(data)
+                if speaker_name == Path(file["clean"]).name.split("_")[0]
+            ]
+            for i in file_indices:
+                valid_indices.append(i)
+                valid_sec_now += data[i]["duration"]
 
         train_data = [
             item for i, item in enumerate(data) if i not in valid_indices
@@ -135,16 +154,11 @@ class TaskDataset(pl.LightningDataModule):
     def prepare_traindata(self, data):
         train_data = []
         for item in data:
-            samples_metadata = []
             clean, noisy, total_dur = item.values()
             num_segments = self.get_num_segments(
                 total_dur, self.duration, self.stride
             )
-            for index in range(num_segments):
-                start = index * self.stride
-                samples_metadata.append(
-                    ({"clean": clean, "noisy": noisy}, start)
-                )
+            samples_metadata = ({"clean": clean, "noisy": noisy}, num_segments)
             train_data.append(samples_metadata)
         return train_data
 
@@ -166,7 +180,9 @@ class TaskDataset(pl.LightningDataModule):
             if total_dur < self.duration:
                 metadata.append(({"clean": clean, "noisy": noisy}, 0.0))
             else:
-                num_segments = round(total_dur / self.duration)
+                num_segments = self.get_num_segments(
+                    total_dur, self.duration, self.duration
+                )
                 for index in range(num_segments):
                     start_time = index * self.duration
                     metadata.append(
@@ -175,31 +191,44 @@ class TaskDataset(pl.LightningDataModule):
         return metadata
 
     def train_collatefn(self, batch):
-        output = {"noisy": [], "clean": []}
+
+        output = {"clean": [], "noisy": []}
         for item in batch:
-            output["noisy"].append(item["noisy"])
             output["clean"].append(item["clean"])
+            output["noisy"].append(item["noisy"])
 
         output["clean"] = torch.stack(output["clean"], dim=0)
         output["noisy"] = torch.stack(output["noisy"], dim=0)
+
+        if self.augmentations is not None:
+            noise = output["noisy"] - output["clean"]
+            output["clean"] = self.augmentations(
+                output["clean"], sample_rate=self.sampling_rate
+            )
+            self.augmentations.freeze_parameters()
+            output["noisy"] = (
+                self.augmentations(noise, sample_rate=self.sampling_rate)
+                + output["clean"]
+            )
+
         return output
 
-    def worker_init_fn(self, _):
-        worker_info = torch.utils.data.get_worker_info()
-        dataset = worker_info.dataset
-        worker_id = worker_info.id
-        split_size = len(dataset.dataset.train_data) // worker_info.num_workers
-        dataset.data = dataset.dataset.train_data[
-            worker_id * split_size : (worker_id + 1) * split_size
-        ]
+    @property
+    def generator(self):
+        generator = torch.Generator()
+        if hasattr(self, "model"):
+            seed = self.model.current_epoch + LARGE_NUM
+        else:
+            seed = LARGE_NUM
+        return generator.manual_seed(seed)
 
     def train_dataloader(self):
         return DataLoader(
             TrainDataset(self),
-            batch_size=None,
+            batch_size=self.batch_size,
             num_workers=self.num_workers,
+            generator=self.generator,
             collate_fn=self.train_collatefn,
-            worker_init_fn=self.worker_init_fn,
         )
 
     def val_dataloader(self):
@@ -251,11 +280,12 @@ class EnhancerDataset(TaskDataset):
         files: Files,
         valid_minutes=5.0,
         duration=1.0,
-        stride=0.5,
+        stride=None,
         sampling_rate=48000,
         matching_function=None,
         batch_size=32,
         num_workers: Optional[int] = None,
+        augmentations: Optional[Compose] = None,
     ):
 
         super().__init__(
@@ -268,6 +298,7 @@ class EnhancerDataset(TaskDataset):
             matching_function=matching_function,
             batch_size=batch_size,
             num_workers=num_workers,
+            augmentations=augmentations,
         )
 
         self.sampling_rate = sampling_rate
@@ -280,35 +311,17 @@ class EnhancerDataset(TaskDataset):
 
         super().setup(stage=stage)
 
-    def random_sample(self, train_data):
-        return random.sample(train_data, len(train_data))
+    def train__getitem__(self, idx):
 
-    def train__iter__(self):
-        rng = create_unique_rng(self.model.current_epoch)
-        train_data = rng.sample(self.train_data, len(self.train_data))
-        return zip(
-            *[
-                self.get_stream(self.random_sample(train_data))
-                for i in range(self.batch_size)
-            ]
-        )
-
-    def get_stream(self, data):
-        return chain.from_iterable(map(self.process_data, cycle(data)))
-
-    def process_data(self, data):
-        for item in data:
-            yield self.prepare_segment(*item)
-
-    @staticmethod
-    def get_num_segments(file_duration, duration, stride):
-
-        if file_duration < duration:
-            num_segments = 1
-        else:
-            num_segments = math.ceil((file_duration - duration) / stride) + 1
-
-        return num_segments
+        for filedict, num_samples in self.train_data:
+            if idx >= num_samples:
+                idx -= num_samples
+                continue
+            else:
+                start = 0
+                if self.duration is not None:
+                    start = idx * self.stride
+                return self.prepare_segment(filedict, start)
 
     def val__getitem__(self, idx):
         return self.prepare_segment(*self._validation[idx])
@@ -348,7 +361,8 @@ class EnhancerDataset(TaskDataset):
         }
 
     def train__len__(self):
-        return sum([len(item) for item in self.train_data]) // (self.batch_size)
+        _, num_examples = list(zip(*self.train_data))
+        return sum(num_examples)
 
     def val__len__(self):
         return len(self._validation)
