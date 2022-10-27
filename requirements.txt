@@ -5,7 +5,7 @@ joblib>=1.2.0
 librosa>=0.9.2
 mlflow>=1.29.0
 numpy>=1.23.3
-git+https://github.com/ludlows/python-pesq#egg=pesq
+pesq==0.0.4
 protobuf>=3.19.6
 pystoi==0.3.3
 pytest-lazy-fixture>=0.6.3
@@ -14,5 +14,6 @@ scikit-learn>=1.1.2
 scipy>=1.9.1
 soundfile>=0.11.0
 torch>=1.12.1
+torch-audiomentations==0.11.0
 torchaudio>=0.12.1
 tqdm>=4.64.1
