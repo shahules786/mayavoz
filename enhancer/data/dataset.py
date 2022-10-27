@@ -124,10 +124,7 @@ class TaskDataset(pl.LightningDataModule):
         valid_sec_now = 0.0
         valid_indices = []
         all_speakers = np.unique(
-            [
-                (Path(file["clean"]).name.split("_")[0], file["duration"])
-                for file in data
-            ]
+            [Path(file["clean"]).name.split("_")[0] for file in data]
         )
         possible_indices = list(range(0, len(all_speakers)))
         rng = create_unique_rng(len(all_speakers))
