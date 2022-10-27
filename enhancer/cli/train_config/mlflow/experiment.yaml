@@ -1,2 +1,2 @@
 experiment_name : shahules/enhancer
-run_name : Demucs + Vtck with stride + augmentations
+run_name : Demucs(ablation_study)
