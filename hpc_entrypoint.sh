@@ -32,11 +32,12 @@ echo "Making temp dir"
 mkdir temp
 pwd
 
-#python transcriber/tasks/embeddings/timit.py --directory /scratch/$USER/TIMIT/data/lisa/data/timit/raw/TIMIT/TRAIN --output ./data/train
-#python transcriber/tasks/embeddings/timit.py --directory /scratch/$USER/TIMIT/data/lisa/data/timit/raw/TIMIT/TEST --output ./data/test
 echo "files"
 rm -rf  /scratch/c.sistc3/MS-SNSD/DNS30/CleanSpeech_training
 rm -rf /scratch/c.sistc3/MS-SNSD/DNS30/NoisySpeech_training
+rm -rf /scratch/c.sistc3/MS-SNSD/DNS30/NoisySpeech_testing
+rm -rf /scratch/c.sistc3/MS-SNSD/DNS30/CleanSpeech_testing
+
 # mkdir /scratch/c.sistc3/MS-SNSD/DNS30
 python noisyspeech_synthesizer.py
 
