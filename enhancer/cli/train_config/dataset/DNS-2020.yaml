@@ -1,11 +1,11 @@
 _target_: enhancer.data.dataset.EnhancerDataset
-root_dir : /scratch/c.sistc3/MS-SNSD/DNS10
+root_dir : /scratch/c.sistc3/MS-SNSD/DNS30
 name : dns-2020
 duration : 5.0
+stride : 1
 sampling_rate: 16000
-batch_size: 128
-stride: 1
-valid_minutes: 15.0
+batch_size: 32
+valid_minutes: 25.0
 files:
   train_clean : CleanSpeech_training
   test_clean : CleanSpeech_testing
