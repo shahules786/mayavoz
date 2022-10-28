@@ -32,16 +32,16 @@ echo "Making temp dir"
 mkdir temp
 pwd
 
-echo "files"
-rm -rf  /scratch/c.sistc3/MS-SNSD/DNS30/CleanSpeech_training
-rm -rf /scratch/c.sistc3/MS-SNSD/DNS30/NoisySpeech_training
-rm -rf /scratch/c.sistc3/MS-SNSD/DNS30/NoisySpeech_testing
-rm -rf /scratch/c.sistc3/MS-SNSD/DNS30/CleanSpeech_testing
+# echo "files"
+# rm -rf  /scratch/c.sistc3/MS-SNSD/DNS30/CleanSpeech_training
+# rm -rf /scratch/c.sistc3/MS-SNSD/DNS30/NoisySpeech_training
+# rm -rf /scratch/c.sistc3/MS-SNSD/DNS30/NoisySpeech_testing
+# rm -rf /scratch/c.sistc3/MS-SNSD/DNS30/CleanSpeech_testing
 
 # mkdir /scratch/c.sistc3/MS-SNSD/DNS30
 python noisyspeech_synthesizer.py
 
-mv ./CleanSpeech_training/ /scratch/c.sistc3/MS-SNSD/DNS30
-mv ./NoisySpeech_training/ /scratch/c.sistc3/MS-SNSD/DNS30
+mv ./CleanSpeech_testing/ /scratch/c.sistc3/MS-SNSD/DNS30
+mv ./NoisySpeech_testing/ /scratch/c.sistc3/MS-SNSD/DNS30
 ls /scratch/c.sistc3/MS-SNSD/DNS30
 #python enhancer/cli/train.py
