@@ -45,7 +45,6 @@ def main(config: DictConfig):
         loss=parameters.get("loss"),
         metric=parameters.get("metric"),
     )
-    print(dataset.train_dataloader().sampler)
 
     direction = model.valid_monitor
     checkpoint = ModelCheckpoint(
