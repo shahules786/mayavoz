@@ -9,7 +9,7 @@ benchmark: False
 check_val_every_n_epoch: 1
 detect_anomaly: False
 deterministic: False
-devices: 2
+devices: 1
 enable_checkpointing: True
 enable_model_summary: True
 enable_progress_bar: True
@@ -38,7 +38,7 @@ precision: 32
 profiler: null
 reload_dataloaders_every_n_epochs: 0
 replace_sampler_ddp: True
-strategy: ddp
+strategy: null
 sync_batchnorm: False
 tpu_cores: null
 track_grad_norm: -1
