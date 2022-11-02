@@ -39,8 +39,8 @@ pwd
 # rm -rf /scratch/c.sistc3/MS-SNSD/DNS30/CleanSpeech_testing
 
 mkdir /scratch/c.sistc3/MS-SNSD/DNS15
-cp /scratch/c.sistc3/MS-SNSD/DNS30/NoisySpeech_testing /scratch/c.sistc3/MS-SNSD/DNS15/
-cp /scratch/c.sistc3/MS-SNSD/DNS30/CleanSpeech_testing /scratch/c.sistc3/MS-SNSD/DNS15/
+cp -r /scratch/c.sistc3/MS-SNSD/DNS30/NoisySpeech_testing /scratch/c.sistc3/MS-SNSD/DNS15/
+cp -r /scratch/c.sistc3/MS-SNSD/DNS30/CleanSpeech_testing /scratch/c.sistc3/MS-SNSD/DNS15/
 
 python noisyspeech_synthesizer.py
 
