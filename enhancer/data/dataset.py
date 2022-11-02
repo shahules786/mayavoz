@@ -133,7 +133,7 @@ class TaskDataset(pl.LightningDataModule):
             speaker_index = rng.choice(possible_indices)
             possible_indices.remove(speaker_index)
             speaker_name = all_speakers[speaker_index]
-            print(f"Selected f{speaker_name} for valid")
+            print(f"Selected {speaker_name} for valid")
             file_indices = [
                 i
                 for i, file in enumerate(data)

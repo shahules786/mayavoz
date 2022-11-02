@@ -1,5 +1,5 @@
 _target_: enhancer.data.dataset.EnhancerDataset
-root_dir : /scratch/c.sistc3/MS-SNSD/DNS30
+root_dir : /scratch/c.sistc3/MS-SNSD/DNS15
 name : dns-2020
 duration : 5.0
 stride : 1

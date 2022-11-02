@@ -3,6 +3,6 @@ metric : [stoi,pesq,si-sdr]
 lr : 0.003
 ReduceLr_patience : 10
 Early_stop : False
-ReduceLr_factor : 0.1
+ReduceLr_factor : 0.5
 min_lr : 0.0000001
 EarlyStopping_patience : 10
