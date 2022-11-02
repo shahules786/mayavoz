@@ -350,7 +350,6 @@ class EnhancerDataset(TaskDataset):
                     self.duration * self.sampling_rate - clean_segment.shape[-1]
                 ),
             ),
-            mode=self.padding_mode,
         )
         noisy_segment = F.pad(
             noisy_segment,
