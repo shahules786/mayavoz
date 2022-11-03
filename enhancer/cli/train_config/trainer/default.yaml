@@ -43,4 +43,3 @@ sync_batchnorm: False
 tpu_cores: null
 track_grad_norm: -1
 val_check_interval: 1.0
-weights_save_path: null
