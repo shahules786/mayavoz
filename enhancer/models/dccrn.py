@@ -5,9 +5,13 @@ from torch import nn
 
 from enhancer.data import EnhancerDataset
 from enhancer.models import Model
-from enhancer.models.complexnn import ComplexConv2d, ComplexLSTM
-from enhancer.models.complexnn.conv import ComplexConvTranspose2d
-from enhancer.models.complexnn.utils import ComplexBatchNorm2D, ComplexRelu
+from enhancer.models.complexnn import (
+    ComplexBatchNorm2D,
+    ComplexConv2d,
+    ComplexConvTranspose2d,
+    ComplexLSTM,
+    ComplexRelu,
+)
 from enhancer.utils.transforms import ConviSTFT, ConvSTFT
 from enhancer.utils.utils import merge_dict
 
