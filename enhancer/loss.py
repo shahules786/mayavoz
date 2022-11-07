@@ -3,6 +3,7 @@ import logging
 import numpy as np
 import torch
 import torch.nn as nn
+from torchmetrics import ScaleInvariantSignalNoiseRatio
 from torchmetrics.audio.pesq import PerceptualEvaluationSpeechQuality
 from torchmetrics.audio.stoi import ShortTimeObjectiveIntelligibility
 
@@ -188,4 +189,5 @@ LOSS_MAP = {
     "si-sdr": Si_SDR,
     "pesq": Pesq,
     "stoi": Stoi,
+    "si-snr": ScaleInvariantSignalNoiseRatio,
 }
