@@ -325,6 +325,6 @@ class DCCRN(Model):
             imag = imag * mask_imag
 
         spec = torch.cat([real, imag], 1)
-        wav = self.istft(spec).squeeze(1)
+        wav = self.istft(spec)
         wav = wav.clamp_(-1, 1)
         return wav
