@@ -261,6 +261,14 @@ class DCCRN(Model):
 
     def forward(self, waveform):
 
+        if waveform.dim() == 2:
+            waveform = waveform.unsqueeze(1)
+
+        if waveform.size(1) != self.hparams.num_channels:
+            raise ValueError(
+                f"Number of input channels initialized is {self.hparams.num_channels} but got {waveform.size(1)} channels"
+            )
+
         waveform_stft = self.stft(waveform)
         real = waveform_stft[:, : self.stft.nfft // 2 + 1]
         imag = waveform_stft[:, self.stft.nfft // 2 + 1 :]
