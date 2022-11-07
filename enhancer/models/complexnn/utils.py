@@ -125,6 +125,10 @@ class ComplexBatchNorm2D(nn.Module):
                 self.Var_rr.lerp_(batch_var_rr.squeeze(), exp_avg_factor)
                 self.Var_ri.lerp_(batch_var_ri.squeeze(), exp_avg_factor)
                 self.Var_ii.lerp_(batch_var_ii.squeeze(), exp_avg_factor)
+        else:
+            batch_var_rr = self.Var_rr.view(vdim)
+            batch_var_ii = self.Var_ii.view(vdim)
+            batch_var_ri = self.Var_ri.view(vdim)
 
         batch_var_rr += self.eps
         batch_var_ii += self.eps
