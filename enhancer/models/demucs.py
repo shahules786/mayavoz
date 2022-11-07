@@ -204,9 +204,9 @@ class Demucs(Model):
         if waveform.dim() == 2:
             waveform = waveform.unsqueeze(1)
 
-        if waveform.size(1) != 1:
-            raise TypeError(
-                f"Demucs can only process mono channel audio, input has {waveform.size(1)} channels"
+        if waveform.size(1) != self.hparams.num_channels:
+            raise ValueError(
+                f"Number of input channels initialized is {self.hparams.num_channels} but got {waveform.size(1)} channels"
             )
         if self.normalize:
             waveform = waveform.mean(dim=1, keepdim=True)
