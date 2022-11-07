@@ -2,7 +2,7 @@ import pytest
 import torch
 
 from enhancer.data.dataset import EnhancerDataset
-from enhancer.models import Demucs
+from enhancer.models.dccrn import DCCRN
 from enhancer.utils.config import Files
 
 
@@ -21,7 +21,7 @@ def vctk_dataset():
 
 @pytest.mark.parametrize("batch_size,samples", [(1, 1000)])
 def test_forward(batch_size, samples):
-    model = Demucs()
+    model = DCCRN()
     model.eval()
 
     data = torch.rand(batch_size, 1, samples, requires_grad=False)
@@ -40,4 +40,4 @@ def test_forward(batch_size, samples):
 )
 def test_demucs_init(dataset, channels, loss):
     with torch.no_grad():
-        _ = Demucs(num_channels=channels, dataset=dataset, loss=loss)
+        _ = DCCRN(num_channels=channels, dataset=dataset, loss=loss)
