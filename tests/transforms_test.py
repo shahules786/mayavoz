@@ -12,3 +12,7 @@ def test_stft_istft():
         spectrogram = stft(sample_input)
         waveform = istft(spectrogram)
     assert sample_input.shape == waveform.shape
+    assert (
+        torch.isclose(waveform, sample_input).sum().item()
+        > sample_input.shape[-1] // 2
+    )
