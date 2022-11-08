@@ -4,7 +4,7 @@
 
 mayavoz is a Pytorch-based opensource toolkit for speech enhancement. It is designed to save time for audio researchers. Is provides easy to use pretrained audio enhancement models and facilitates highly customisable model training.
 
-| **[Quick Start]()** | **[Installation]()** | **[Tutorials]()** | **[Available Recipes]()**
+| **[Quick Start](#quick-start-fire)** | **[Installation](#installation)** | **[Tutorials](https://github.com/shahules786/enhancer/tutorials/)** | **[Available Recipes](#recipes)** | **[Demo]()**
 ## Key features :key:
 
 * Various pretrained models nicely integrated with huggingface 	:hugs: that users can select and use without any hastle.
