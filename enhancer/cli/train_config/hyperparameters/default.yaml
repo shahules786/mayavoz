@@ -1,5 +1,5 @@
-loss : si-snr
-metric : [stoi,pesq]
+loss : mae
+metric : [si-sdr,stoi,pesq]
 lr : 0.0003
 ReduceLr_patience : 100
 Early_stop : False
