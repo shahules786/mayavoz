@@ -1,0 +1,8 @@
+loss : mae
+metric : [stoi,pesq,si-sdr]
+lr : 0.003
+ReduceLr_patience : 10
+ReduceLr_factor : 0.1
+min_lr : 0.000001
+EarlyStopping_factor : 10
+Early_stop : False
