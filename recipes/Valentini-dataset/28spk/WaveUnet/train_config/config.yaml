@@ -1,0 +1,7 @@
+defaults:
+  - model : WaveUnet
+  - dataset : Vctk
+  - optimizer : Adam
+  - hyperparameters : default
+  - trainer : default
+  - mlflow : experiment
