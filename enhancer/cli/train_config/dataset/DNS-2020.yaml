@@ -5,7 +5,7 @@ duration : 5.0
 stride : 1
 sampling_rate: 16000
 batch_size: 32
-valid_minutes: 25.0
+min_valid_minutes: 25.0
 files:
   train_clean : CleanSpeech_training
   test_clean : CleanSpeech_testing
