@@ -1,3 +1,10 @@
+#local
+*.ckpt
+*_local.yaml
+cli/train_config/dataset/Vctk_local.yaml
+.DS_Store
+outputs/
+datasets/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
