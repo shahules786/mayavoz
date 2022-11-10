@@ -27,8 +27,8 @@ model("noisy_audio.wav")
 
 | Model     | Dataset           | STOI    | PESQ  | URL                           |
 | :---:     |  :---:            | :---:   | :---: | :---:                         |
-| WaveUnet  | Vctk-28spk        |         |       |  mayavoz/waveunet-vctk28      |
-| Demucs    | DNS-2020 (30hrs)  |         |       |  mayavoz/demucs-vctk28        |
+| WaveUnet  | Vctk-28spk        | 0.836        | 2.78     | shahules786/mayavoz-waveunet-valentini-28spk      |
+| Demucs    | DNS-2020 (30hrs)  | 0.961        | 2.56    |  shahules786/mayavoz-demucs-valentini-28spk       |
 | DCCRN     | DNS-2020 (30hrs)  |         |       |  mayavoz/dccrn-vctk28         |
 
 
