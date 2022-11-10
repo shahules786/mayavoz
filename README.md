@@ -2,7 +2,6 @@
   <img src="https://user-images.githubusercontent.com/25312635/195514652-e4526cd1-1177-48e9-a80d-c8bfdb95d35f.png" />
 </p>
 
-[![codecov][codecov-badge]][codecov]
 ![GitHub issues](https://img.shields.io/github/issues/shahules786/enhancer?logo=GitHub)
 ![GitHub Repo stars](https://img.shields.io/github/stars/shahules786/enhancer?style=social)
 
