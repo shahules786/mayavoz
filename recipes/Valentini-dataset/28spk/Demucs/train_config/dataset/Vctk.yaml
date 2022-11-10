@@ -1,0 +1,13 @@
+_target_: enhancer.data.dataset.EnhancerDataset
+name : vctk
+root_dir : /scratch/c.sistc3/DS_10283_2791
+duration : 4.5
+stride : 0.5
+sampling_rate: 16000
+batch_size: 32
+min_valid_minutes : 25
+files:
+  train_clean : clean_trainset_28spk_wav
+  test_clean : clean_testset_wav
+  train_noisy : noisy_trainset_28spk_wav
+  test_noisy : noisy_testset_wav

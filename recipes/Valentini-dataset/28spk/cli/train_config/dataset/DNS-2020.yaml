@@ -1,0 +1,12 @@
+_target_: enhancer.data.dataset.EnhancerDataset
+root_dir : /Users/shahules/Myprojects/MS-SNSD
+name : dns-2020
+duration : 2.0
+sampling_rate: 16000
+batch_size: 32
+valid_size: 0.05
+files:
+  train_clean : CleanSpeech_training
+  test_clean : CleanSpeech_training
+  train_noisy : NoisySpeech_training
+  test_noisy : NoisySpeech_training
