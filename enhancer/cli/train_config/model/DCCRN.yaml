@@ -4,7 +4,7 @@ sampling_rate : 16000
 complex_lstm : True
 complex_norm : True
 complex_relu : True
-masking_mode : True
+masking_mode : "E"
 
 encoder_decoder:
   initial_output_channels : 32
