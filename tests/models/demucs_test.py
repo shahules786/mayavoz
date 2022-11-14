@@ -1,9 +1,9 @@
 import pytest
 import torch
 
-from enhancer.data.dataset import EnhancerDataset
-from enhancer.models import Demucs
-from enhancer.utils.config import Files
+from mayavoz.data.dataset import EnhancerDataset
+from mayavoz.models import Demucs
+from mayavoz.utils.config import Files
 
 
 @pytest.fixture

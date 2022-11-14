@@ -1,9 +1,9 @@
 import pytest
 import torch
 
-from enhancer.data.dataset import EnhancerDataset
-from enhancer.models.dccrn import DCCRN
-from enhancer.utils.config import Files
+from mayavoz.data.dataset import EnhancerDataset
+from mayavoz.models.dccrn import DCCRN
+from mayavoz.utils.config import Files
 
 
 @pytest.fixture

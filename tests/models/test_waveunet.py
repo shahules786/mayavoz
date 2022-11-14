@@ -1,9 +1,9 @@
 import pytest
 import torch
 
-from enhancer.data.dataset import EnhancerDataset
-from enhancer.models import WaveUnet
-from enhancer.utils.config import Files
+from mayavoz.data.dataset import EnhancerDataset
+from mayavoz.models import WaveUnet
+from mayavoz.utils.config import Files
 
 
 @pytest.fixture

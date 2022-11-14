@@ -1,6 +1,6 @@
 import torch
 
-from enhancer.utils.transforms import ConviSTFT, ConvSTFT
+from mayavoz.utils.transforms import ConviSTFT, ConvSTFT
 
 
 def test_stft_istft():

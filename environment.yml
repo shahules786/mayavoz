@@ -1,4 +1,4 @@
-name: enhancer
+name: mayavoz
 
 dependencies:
   - pip=21.0.1

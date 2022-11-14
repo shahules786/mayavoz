@@ -1,4 +1,4 @@
-_target_: enhancer.data.dataset.EnhancerDataset
+_target_: mayavoz.data.dataset.EnhancerDataset
 name : vctk
 root_dir : /scratch/c.sistc3/DS_10283_2791
 duration : 4.5

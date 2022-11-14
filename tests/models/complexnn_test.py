@@ -1,8 +1,8 @@
 import torch
 
-from enhancer.models.complexnn.conv import ComplexConv2d, ComplexConvTranspose2d
-from enhancer.models.complexnn.rnn import ComplexLSTM
-from enhancer.models.complexnn.utils import ComplexBatchNorm2D
+from mayavoz.models.complexnn.conv import ComplexConv2d, ComplexConvTranspose2d
+from mayavoz.models.complexnn.rnn import ComplexLSTM
+from mayavoz.models.complexnn.utils import ComplexBatchNorm2D
 
 
 def test_complexconv2d():

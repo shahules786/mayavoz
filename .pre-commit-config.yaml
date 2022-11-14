@@ -23,6 +23,7 @@ repos:
       hooks:
       - id: flake8
         args: ['--ignore=E203,E501,F811,E712,W503']
+        exclude: __init__.py
 
     # Formatting, Whitespace, etc
     - repo: https://github.com/pre-commit/pre-commit-hooks

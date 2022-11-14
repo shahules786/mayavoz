@@ -33,15 +33,15 @@ elif sha != "Unknown":
     version += "+" + sha[:7]
 print("-- Building version " + version)
 
-version_path = ROOT_DIR / "enhancer" / "version.py"
+version_path = ROOT_DIR / "mayavoz" / "version.py"
 
 with open(version_path, "w") as f:
     f.write("__version__ = '{}'\n".format(version))
 
 if __name__ == "__main__":
     setup(
-        name="enhancer",
-        namespace_packages=["enhancer"],
+        name="mayavoz",
+        namespace_packages=["mayavoz"],
         version=version,
         packages=find_packages(),
         install_requires=requirements,

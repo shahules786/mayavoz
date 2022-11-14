@@ -1,7 +1,7 @@
 import pytest
 import torch
 
-from enhancer.inference import Inference
+from mayavoz.inference import Inference
 
 
 @pytest.mark.parametrize(
