@@ -28,11 +28,11 @@ model("noisy_audio.wav")
 
 ## Recipes
 
-| Model     | Dataset           | STOI    | PESQ  | URL                           |
-| :---:     |  :---:            | :---:   | :---: | :---:                         |
-| WaveUnet  | Vctk-28spk        | 0.836        | 2.78     | shahules786/mayavoz-waveunet-valentini-28spk      |
-| Demucs    | DNS-2020 (30hrs)  | 0.961        | 2.56    |  shahules786/mayavoz-demucs-valentini-28spk       |
-| DCCRN     | DNS-2020 (30hrs)  |         |       |  mayavoz/dccrn-vctk28         |
+| Model     | Dataset      | STOI    | PESQ  | URL                           |
+| :---:     |  :---:       | :---:   | :---: | :---:                         |
+| WaveUnet  | Vctk-28spk   | 0.836   | 2.78  |  shahules786/mayavoz-waveunet-valentini-28spk      |
+| Demucs    | Vctk-28spk   | 0.961   | 2.56  |  shahules786/mayavoz-demucs-valentini-28spk       |
+| DCCRN     | Vctk-28spk   | 0.724   | 2.55  |  shahules786/mayavoz-dccrn-valentini-28spk         |
 
 
 ## Installation
