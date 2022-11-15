@@ -24,7 +24,7 @@ CACHE_DIR = os.getenv(
 )
 HF_TORCH_WEIGHTS = "pytorch_model.ckpt"
 DEFAULT_DEVICE = "cpu"
-SAVE_NAME = "enhancer"
+SAVE_NAME = "mayavoz"
 
 
 class Mayamodel(pl.LightningModule):
