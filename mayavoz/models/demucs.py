@@ -6,7 +6,7 @@ import torch.nn.functional as F
 from torch import nn
 
 from mayavoz.data.dataset import EnhancerDataset
-from mayavoz.models.model import Model
+from mayavoz.models.model import Mayamodel
 from mayavoz.utils.io import Audio as audio
 from mayavoz.utils.utils import merge_dict
 
@@ -88,7 +88,7 @@ class DemucsDecoder(nn.Module):
         return out
 
 
-class Demucs(Model):
+class Demucs(Mayamodel):
     """
     Demucs model from https://arxiv.org/pdf/1911.13254.pdf
     parameters:

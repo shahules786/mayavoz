@@ -6,7 +6,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from mayavoz.data.dataset import EnhancerDataset
-from mayavoz.models.model import Model
+from mayavoz.models.model import Mayamodel
 
 
 class WavenetDecoder(nn.Module):
@@ -66,7 +66,7 @@ class WavenetEncoder(nn.Module):
         return self.encoder(waveform)
 
 
-class WaveUnet(Model):
+class WaveUnet(Mayamodel):
     """
     Wave-U-Net model from  https://arxiv.org/pdf/1811.11307.pdf
     parameters:

@@ -6,7 +6,7 @@ import torch.nn.functional as F
 from torch import nn
 
 from mayavoz.data import EnhancerDataset
-from mayavoz.models import Model
+from mayavoz.models import Mayamodel
 from mayavoz.models.complexnn import (
     ComplexBatchNorm2D,
     ComplexConv2d,
@@ -98,7 +98,7 @@ class DCCRN_DECODER(nn.Module):
         return self.decoder(waveform)
 
 
-class DCCRN(Model):
+class DCCRN(Mayamodel):
 
     STFT_DEFAULTS = {
         "window_len": 400,

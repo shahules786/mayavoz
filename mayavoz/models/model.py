@@ -27,7 +27,7 @@ DEFAULT_DEVICE = "cpu"
 SAVE_NAME = "enhancer"
 
 
-class Model(pl.LightningModule):
+class Mayamodel(pl.LightningModule):
     """
     Base class for all models
     parameters:
@@ -288,8 +288,8 @@ class Model(pl.LightningModule):
 
         Returns
         -------
-        model : Model
-            Model
+        model : Mayamodel
+            Mayamodel
 
         See also
         --------
