@@ -1,4 +1,4 @@
-import logging
+import warnings
 
 import numpy as np
 import torch
@@ -134,7 +134,7 @@ class Pesq:
             try:
                 pesq_values.append(self.pesq(pred.squeeze(), target_.squeeze()))
             except Exception as e:
-                logging.warning(f"{e} error occured while calculating PESQ")
+                warnings.warn(f"{e} error occured while calculating PESQ")
         return torch.tensor(np.mean(pesq_values))
 
 

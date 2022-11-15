@@ -1,4 +1,8 @@
 #local
+cleaned_my_voice.wav
+lightning_logs/
+my_voice.wav
+pretrained/
 *.ckpt
 *_local.yaml
 cli/train_config/dataset/Vctk_local.yaml

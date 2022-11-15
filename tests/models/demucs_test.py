@@ -15,7 +15,9 @@ def vctk_dataset():
         test_clean="clean_testset_wav",
         test_noisy="noisy_testset_wav",
     )
-    dataset = MayaDataset(name="vctk", root_dir=root_dir, files=files)
+    dataset = MayaDataset(
+        name="vctk", root_dir=root_dir, files=files, sampling_rate=16000
+    )
     return dataset
 
 

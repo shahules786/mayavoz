@@ -93,7 +93,7 @@ class Fileprocessor:
     def from_name(cls, name: str, clean_dir, noisy_dir, matching_function=None):
 
         if matching_function is None:
-            if name.lower() == "vctk":
+            if name.lower() in ("vctk", "valentini"):
                 return cls(clean_dir, noisy_dir, ProcessorFunctions.one_to_one)
             elif name.lower() == "dns-2020":
                 return cls(clean_dir, noisy_dir, ProcessorFunctions.one_to_many)

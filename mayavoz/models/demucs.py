@@ -1,5 +1,5 @@
-import logging
 import math
+import warnings
 from typing import List, Optional, Union
 
 import torch.nn.functional as F
@@ -136,16 +136,17 @@ class Demucs(Mayamodel):
         normalize=True,
         lr: float = 1e-3,
         dataset: Optional[MayaDataset] = None,
+        duration: Optional[float] = None,
         loss: Union[str, List] = "mse",
         metric: Union[str, List] = "mse",
         floor=1e-3,
     ):
         duration = (
-            dataset.duration if isinstance(dataset, MayaDataset) else None
+            dataset.duration if isinstance(dataset, MayaDataset) else duration
         )
         if dataset is not None:
             if sampling_rate != dataset.sampling_rate:
-                logging.warning(
+                warnings.warn(
                     f"model sampling rate {sampling_rate} should match dataset sampling rate {dataset.sampling_rate}"
                 )
                 sampling_rate = dataset.sampling_rate

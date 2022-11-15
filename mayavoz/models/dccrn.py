@@ -1,4 +1,4 @@
-import logging
+import warnings
 from typing import Any, List, Optional, Tuple, Union
 
 import torch
@@ -140,11 +140,11 @@ class DCCRN(Mayamodel):
         metric: Union[str, List] = "mse",
     ):
         duration = (
-            dataset.duration if isinstance(dataset, MayaDataset) else None
+            dataset.duration if isinstance(dataset, MayaDataset) else duration
         )
         if dataset is not None:
             if sampling_rate != dataset.sampling_rate:
-                logging.warning(
+                warnings.warn(
                     f"model sampling rate {sampling_rate} should match dataset sampling rate {dataset.sampling_rate}"
                 )
                 sampling_rate = dataset.sampling_rate

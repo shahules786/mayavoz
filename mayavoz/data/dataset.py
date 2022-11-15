@@ -1,6 +1,8 @@
 import math
 import multiprocessing
 import os
+import sys
+import warnings
 from pathlib import Path
 from typing import Optional
 
@@ -80,6 +82,21 @@ class TaskDataset(pl.LightningDataModule):
         self._validation = []
         if num_workers is None:
             num_workers = multiprocessing.cpu_count() // 2
+        if num_workers is None:
+            num_workers = multiprocessing.cpu_count() // 2
+
+        if (
+            num_workers > 0
+            and sys.platform == "darwin"
+            and sys.version_info[0] >= 3
+            and sys.version_info[1] >= 8
+        ):
+            warnings.warn(
+                "num_workers > 0 is not supported with macOS and Python 3.8+: "
+                "setting num_workers = 0."
+            )
+            num_workers = 0
+
         self.num_workers = num_workers
         if min_valid_minutes > 0.0:
             self.min_valid_minutes = min_valid_minutes
