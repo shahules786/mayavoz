@@ -1,9 +1,9 @@
 import pytest
 import torch
 
-from enhancer.data.dataset import EnhancerDataset
-from enhancer.models.dccrn import DCCRN
-from enhancer.utils.config import Files
+from mayavoz.data.dataset import MayaDataset
+from mayavoz.models.dccrn import DCCRN
+from mayavoz.utils.config import Files
 
 
 @pytest.fixture
@@ -15,7 +15,7 @@ def vctk_dataset():
         test_clean="clean_testset_wav",
         test_noisy="noisy_testset_wav",
     )
-    dataset = EnhancerDataset(name="vctk", root_dir=root_dir, files=files)
+    dataset = MayaDataset(name="vctk", root_dir=root_dir, files=files)
     return dataset
 
 

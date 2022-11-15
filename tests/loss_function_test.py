@@ -1,7 +1,7 @@
 import pytest
 import torch
 
-from enhancer.loss import mean_absolute_error, mean_squared_error
+from mayavoz.loss import mean_absolute_error, mean_squared_error
 
 loss_functions = [mean_absolute_error(), mean_squared_error()]
 

@@ -2,8 +2,8 @@ import numpy as np
 import pytest
 import torch
 
-from enhancer.data.fileprocessor import Fileprocessor
-from enhancer.utils.io import Audio
+from mayavoz.data.fileprocessor import Fileprocessor
+from mayavoz.utils.io import Audio
 
 
 def test_io_channel():

@@ -1,4 +1,4 @@
-_target_: enhancer.models.demucs.Demucs
+_target_: mayavoz.models.demucs.Demucs
 num_channels: 1
 resample: 4
 sampling_rate : 16000

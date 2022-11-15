@@ -1,13 +1,13 @@
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: Enhancer
+name: mayavoz
 
 on:
   push:
     branches: [ dev ]
   pull_request:
-    branches: [ dev ]
+    branches: [ main ]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -40,12 +40,12 @@ jobs:
         sudo apt-get install libsndfile1
         pip install -r requirements.txt
         pip install black pytest-cov
-    - name: Install enhancer
+    - name: Install mayavoz
       run: |
           pip install -e .[dev,testing]
     - name: Run black
       run:
-        black --check .  --exclude enhancer/version.py
+        black --check .  --exclude mayavoz/version.py
     - name: Test with pytest
       run:
-        pytest tests --cov=enhancer/
+        pytest tests --cov=mayavoz/
