@@ -22,7 +22,7 @@ mayavoz is a Pytorch-based opensource toolkit for speech enhancement. It is desi
 ``` python
 from mayavoz import Mayamodel
 
-model = Mayamodel.from_pretrained("mayavoz/waveunet")
+model = Mayamodel.from_pretrained("shahules786/mayavoz-waveunet-valentini-28spk")
 model("noisy_audio.wav")
 ```
 
