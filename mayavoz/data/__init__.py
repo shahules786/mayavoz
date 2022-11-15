@@ -1,1 +1,1 @@
-from mayavoz.data.dataset import EnhancerDataset
+from mayavoz.data.dataset import MayaDataset

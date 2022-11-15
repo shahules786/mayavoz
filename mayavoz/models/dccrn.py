@@ -5,7 +5,7 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
-from mayavoz.data import EnhancerDataset
+from mayavoz.data import MayaDataset
 from mayavoz.models import Mayamodel
 from mayavoz.models.complexnn import (
     ComplexBatchNorm2D,
@@ -134,13 +134,13 @@ class DCCRN(Mayamodel):
         num_channels: int = 1,
         sampling_rate=16000,
         lr: float = 1e-3,
-        dataset: Optional[EnhancerDataset] = None,
+        dataset: Optional[MayaDataset] = None,
         duration: Optional[float] = None,
         loss: Union[str, List, Any] = "mse",
         metric: Union[str, List] = "mse",
     ):
         duration = (
-            dataset.duration if isinstance(dataset, EnhancerDataset) else None
+            dataset.duration if isinstance(dataset, MayaDataset) else None
         )
         if dataset is not None:
             if sampling_rate != dataset.sampling_rate:

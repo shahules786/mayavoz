@@ -5,7 +5,7 @@ from typing import List, Optional, Union
 import torch.nn.functional as F
 from torch import nn
 
-from mayavoz.data.dataset import EnhancerDataset
+from mayavoz.data.dataset import MayaDataset
 from mayavoz.models.model import Mayamodel
 from mayavoz.utils.io import Audio as audio
 from mayavoz.utils.utils import merge_dict
@@ -102,8 +102,8 @@ class Demucs(Mayamodel):
             sampling rate of input audio
         lr : float, defaults to 1e-3
             learning rate used for training
-        dataset: EnhancerDataset, optional
-            EnhancerDataset object containing train/validation data for training
+        dataset: MayaDataset, optional
+            MayaDataset object containing train/validation data for training
         duration : float, optional
             chunk duration in seconds
         loss : string or List of strings
@@ -135,13 +135,13 @@ class Demucs(Mayamodel):
         sampling_rate=16000,
         normalize=True,
         lr: float = 1e-3,
-        dataset: Optional[EnhancerDataset] = None,
+        dataset: Optional[MayaDataset] = None,
         loss: Union[str, List] = "mse",
         metric: Union[str, List] = "mse",
         floor=1e-3,
     ):
         duration = (
-            dataset.duration if isinstance(dataset, EnhancerDataset) else None
+            dataset.duration if isinstance(dataset, MayaDataset) else None
         )
         if dataset is not None:
             if sampling_rate != dataset.sampling_rate:

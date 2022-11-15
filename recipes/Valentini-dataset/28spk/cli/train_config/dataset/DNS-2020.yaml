@@ -1,4 +1,4 @@
-_target_: mayavoz.data.dataset.EnhancerDataset
+_target_: mayavoz.data.dataset.MayaDataset
 root_dir : /Users/shahules/Myprojects/MS-SNSD
 name : dns-2020
 duration : 2.0

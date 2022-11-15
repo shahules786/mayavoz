@@ -248,7 +248,7 @@ class TaskDataset(pl.LightningDataModule):
         )
 
 
-class EnhancerDataset(TaskDataset):
+class MayaDataset(TaskDataset):
     """
     Dataset object for creating clean-noisy speech enhancement datasets
     paramters:

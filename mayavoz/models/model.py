@@ -13,7 +13,7 @@ from pytorch_lightning.utilities.cloud_io import load as pl_load
 from torch import nn
 from torch.optim import Adam
 
-from mayavoz.data.dataset import EnhancerDataset
+from mayavoz.data.dataset import MayaDataset
 from mayavoz.inference import Inference
 from mayavoz.loss import LOSS_MAP, LossWrapper
 from mayavoz.version import __version__
@@ -37,7 +37,7 @@ class Mayamodel(pl.LightningModule):
             audio sampling rate
         lr: float, optional
             learning rate for model training
-        dataset: EnhancerDataset, optional
+        dataset: MayaDataset, optional
             mayavoz dataset used for training/validation
         duration: float, optional
             duration used for training/inference
@@ -51,7 +51,7 @@ class Mayamodel(pl.LightningModule):
         num_channels: int = 1,
         sampling_rate: int = 16000,
         lr: float = 1e-3,
-        dataset: Optional[EnhancerDataset] = None,
+        dataset: Optional[MayaDataset] = None,
         duration: Optional[float] = None,
         loss: Union[str, List] = "mse",
         metric: Union[str, List, Any] = "mse",
