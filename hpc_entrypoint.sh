@@ -40,6 +40,7 @@ pwd
 
 # cp -r /scratch/c.sistc3/MS-SNSD/DNS30/NoisySpeech_testing /scratch/c.sistc3/MS-SNSD/DNS15/
 # cp -r /scratch/c.sistc3/MS-SNSD/DNS30/CleanSpeech_testing /scratch/c.sistc3/MS-SNSD/DNS15/
+rm -rf /scratch/c.sistc3/MS-SNSD/DNS20
 
 mkdir  /scratch/c.sistc3/MS-SNSD/DNS20
 
