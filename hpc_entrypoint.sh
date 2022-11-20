@@ -41,9 +41,11 @@ pwd
 # cp -r /scratch/c.sistc3/MS-SNSD/DNS30/NoisySpeech_testing /scratch/c.sistc3/MS-SNSD/DNS15/
 # cp -r /scratch/c.sistc3/MS-SNSD/DNS30/CleanSpeech_testing /scratch/c.sistc3/MS-SNSD/DNS15/
 
+mkdir  /scratch/c.sistc3/MS-SNSD/DNS20
+
 python noisyspeech_synthesizer.py
 
-mv ./CleanSpeech_training/ /scratch/c.sistc3/MS-SNSD/DNS15
-mv ./NoisySpeech_training/ /scratch/c.sistc3/MS-SNSD/DNS15
-ls /scratch/c.sistc3/MS-SNSD/DNS15
+mv ./CleanSpeech_training/ /scratch/c.sistc3/MS-SNSD/DNS20
+mv ./NoisySpeech_training/ /scratch/c.sistc3/MS-SNSD/DNS20
+ls /scratch/c.sistc3/MS-SNSD/DNS20
 #python enhancer/cli/train.py
