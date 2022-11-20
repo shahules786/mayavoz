@@ -46,7 +46,7 @@ mkdir  /scratch/c.sistc3/MS-SNSD/DNS20
 
 python noisyspeech_synthesizer.py
 
-mv ./CleanSpeech_training/ /scratch/c.sistc3/MS-SNSD/DNS20
-mv ./NoisySpeech_training/ /scratch/c.sistc3/MS-SNSD/DNS20
+mv ./CleanSpeech_testing/ /scratch/c.sistc3/MS-SNSD/DNS20
+mv ./NoisySpeech_testing/ /scratch/c.sistc3/MS-SNSD/DNS20
 ls /scratch/c.sistc3/MS-SNSD/DNS20
 #python enhancer/cli/train.py
