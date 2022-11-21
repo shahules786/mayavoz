@@ -1,4 +1,4 @@
-loss : si-snr
+loss : mae
 metric : [stoi,pesq]
 lr : 0.0003
 ReduceLr_patience : 10
