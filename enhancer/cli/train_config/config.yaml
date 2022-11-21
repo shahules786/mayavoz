@@ -1,5 +1,5 @@
 defaults:
-  - model : DCCRN
+  - model : Demucs
   - dataset : DNS-2020
   - optimizer : Adam
   - hyperparameters : default
