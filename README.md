@@ -2,12 +2,15 @@
   <img src="https://user-images.githubusercontent.com/25312635/195514652-e4526cd1-1177-48e9-a80d-c8bfdb95d35f.png" />
 </p>
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/shahules786/enhancer/Enhancer)
+![GitHub](https://img.shields.io/github/license/shahules786/enhancer)
 ![GitHub issues](https://img.shields.io/github/issues/shahules786/enhancer?logo=GitHub)
 ![GitHub Repo stars](https://img.shields.io/github/stars/shahules786/enhancer?style=social)
+![GitHub all releases](https://img.shields.io/github/downloads/shahules786/enhancer/total)
 
 mayavoz is a Pytorch-based opensource toolkit for speech enhancement. It is designed to save time for audio researchers. Is provides easy to use pretrained audio enhancement models and facilitates highly customisable model training.
 
-| **[Quick Start](#quick-start-fire)** | **[Installation](#installation)** | **[Tutorials](https://github.com/shahules786/enhancer/notebooks/)** | **[Available Recipes](#recipes)** | **[Demo]()**
+| **[Quick Start](#quick-start-fire)** | **[Installation](#installation)** | **[Tutorials](https://github.com/shahules786/enhancer/tree/main/notebooks)** | **[Available Recipes](#recipes)** | **[Demo]()**
 ## Key features :key:
 
 * Various pretrained models nicely integrated with huggingface 	:hugs: that users can select and use without any hastle.
@@ -19,17 +22,17 @@ mayavoz is a Pytorch-based opensource toolkit for speech enhancement. It is desi
 ``` python
 from mayavoz import Mayamodel
 
-model = Mayamodel.from_pretrained("mayavoz/waveunet")
+model = Mayamodel.from_pretrained("shahules786/mayavoz-waveunet-valentini-28spk")
 model("noisy_audio.wav")
 ```
 
 ## Recipes
 
-| Model     | Dataset           | STOI    | PESQ  | URL                           |
-| :---:     |  :---:            | :---:   | :---: | :---:                         |
-| WaveUnet  | Vctk-28spk        | 0.836        | 2.78     | shahules786/mayavoz-waveunet-valentini-28spk      |
-| Demucs    | DNS-2020 (30hrs)  | 0.961        | 2.56    |  shahules786/mayavoz-demucs-valentini-28spk       |
-| DCCRN     | DNS-2020 (30hrs)  |         |       |  mayavoz/dccrn-vctk28         |
+| Model     | Dataset      | STOI    | PESQ  | URL                           |
+| :---:     |  :---:       | :---:   | :---: | :---:                         |
+| WaveUnet  | Vctk-28spk   | 0.836   | 2.78  |  shahules786/mayavoz-waveunet-valentini-28spk      |
+| Demucs    | Vctk-28spk   | 0.961   | 2.56  |  shahules786/mayavoz-demucs-valentini-28spk       |
+| DCCRN     | Vctk-28spk   | 0.724   | 2.55  |  shahules786/mayavoz-dccrn-valentini-28spk         |
 
 
 ## Installation
