@@ -20,7 +20,7 @@ mayavoz is a Pytorch-based opensource toolkit for speech enhancement. It is desi
 
 ## Quick Start :fire:
 ``` python
-from mayavoz import Mayamodel
+from mayavoz.models import Mayamodel
 
 model = Mayamodel.from_pretrained("shahules786/mayavoz-waveunet-valentini-28spk")
 model("noisy_audio.wav")
@@ -33,7 +33,9 @@ model("noisy_audio.wav")
 | WaveUnet  | Vctk-28spk   | 0.836   | 2.78  |  shahules786/mayavoz-waveunet-valentini-28spk      |
 | Demucs    | Vctk-28spk   | 0.961   | 2.56  |  shahules786/mayavoz-demucs-valentini-28spk       |
 | DCCRN     | Vctk-28spk   | 0.724   | 2.55  |  shahules786/mayavoz-dccrn-valentini-28spk         |
+| Demucs     | DNS2020 (20hrs)  | 0.56 | 1.26  |  shahules786/mayavoz-demucs-dns2020-20hr        |
 
+Test scores are based on respective test set associated with train dataset.
 
 ## Installation
 Only Python 3.8+ is officially supported (though it might work with Python 3.7)
@@ -56,3 +58,10 @@ git clone url
 cd mayavoz
 pip install -e .
 ```
+
+## Support
+
+For commercial enquiries and scientific consulting, please [contact me](https://shahules786.github.io/).
+
+### Acknowledgements
+Sincere gratitude to [AMPLYFI](https://amplyfi.com/) for supporting this project.
