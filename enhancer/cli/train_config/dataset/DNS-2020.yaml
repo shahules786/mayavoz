@@ -1,7 +1,7 @@
 _target_: enhancer.data.dataset.EnhancerDataset
 root_dir : /scratch/c.sistc3/MS-SNSD/DNS20
 name : dns-2020
-duration : 5
+duration : 3
 stride : 2
 sampling_rate: 16000
 batch_size: 32
