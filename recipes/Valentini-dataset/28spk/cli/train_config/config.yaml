@@ -1,7 +1,0 @@
-defaults:
-  - model : Demucs
-  - dataset : Vctk
-  - optimizer : Adam
-  - hyperparameters : default
-  - trainer : default
-  - mlflow : experiment
