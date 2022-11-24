@@ -10,7 +10,7 @@
 
 mayavoz is a Pytorch-based opensource toolkit for speech enhancement. It is designed to save time for audio researchers. Is provides easy to use pretrained audio enhancement models and facilitates highly customisable model training.
 
-| **[Quick Start](#quick-start-fire)** | **[Installation](#installation)** | **[Tutorials](https://github.com/shahules786/enhancer/tree/main/notebooks)** | **[Available Recipes](#recipes)** | **[Demo]()**
+| **[Quick Start](#quick-start-fire)** | **[Installation](#installation)** | **[Tutorials](https://github.com/shahules786/enhancer/tree/main/notebooks)** | **[Available Recipes](#recipes)** | **[Demo](#demo)**
 ## Key features :key:
 
 * Various pretrained models nicely integrated with huggingface 	:hugs: that users can select and use without any hastle.
@@ -18,12 +18,21 @@ mayavoz is a Pytorch-based opensource toolkit for speech enhancement. It is desi
 * :magic_wand: A command line tool that facilitates training of highly customisable speech enhacement models from the terminal itself!
 * :zap: Supports multi-gpu training integrated with Pytorch Lightning.
 
+
+## Demo
+
+Noisy audio followed by enhanced audio.
+
+https://user-images.githubusercontent.com/25312635/203756185-737557f4-6e21-4146-aa2c-95da69d0de4c.mp4
+
+
+
 ## Quick Start :fire:
 ``` python
 from mayavoz.models import Mayamodel
 
 model = Mayamodel.from_pretrained("shahules786/mayavoz-waveunet-valentini-28spk")
-model("noisy_audio.wav")
+model.enhance("noisy_audio.wav")
 ```
 
 ## Recipes
