@@ -1,5 +1,0 @@
-_target_: mayavoz.models.waveunet.WaveUnet
-num_channels : 1
-depth : 9
-initial_output_channels: 24
-sampling_rate : 16000

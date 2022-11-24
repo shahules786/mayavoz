@@ -95,7 +95,7 @@ class Fileprocessor:
         if matching_function is None:
             if name.lower() in ("vctk", "valentini"):
                 return cls(clean_dir, noisy_dir, ProcessorFunctions.one_to_one)
-            elif name.lower() == "dns-2020":
+            elif name.lower() == "ms-snsd":
                 return cls(clean_dir, noisy_dir, ProcessorFunctions.one_to_many)
             else:
                 raise ValueError(

@@ -1,0 +1,7 @@
+loss : si-snr
+metric : [stoi,pesq]
+lr : 0.001
+ReduceLr_patience : 10
+ReduceLr_factor : 0.5
+min_lr : 0.000001
+EarlyStopping_factor : 10

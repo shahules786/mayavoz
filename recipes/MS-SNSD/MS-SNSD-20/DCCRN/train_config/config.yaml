@@ -1,6 +1,6 @@
 defaults:
   - model : Demucs
-  - dataset : Vctk
+  - dataset : MS-SNSD
   - optimizer : Adam
   - hyperparameters : default
   - trainer : default

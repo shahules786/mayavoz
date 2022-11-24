@@ -30,12 +30,14 @@ model("noisy_audio.wav")
 
 | Model     | Dataset      | STOI    | PESQ  | URL                           |
 | :---:     |  :---:       | :---:   | :---: | :---:                         |
-| WaveUnet  | Vctk-28spk   | 0.836   | 2.78  |  shahules786/mayavoz-waveunet-valentini-28spk      |
-| Demucs    | Vctk-28spk   | 0.961   | 2.56  |  shahules786/mayavoz-demucs-valentini-28spk       |
-| DCCRN     | Vctk-28spk   | 0.724   | 2.55  |  shahules786/mayavoz-dccrn-valentini-28spk         |
-| Demucs     | DNS2020 (20hrs)  | 0.56 | 1.26  |  shahules786/mayavoz-demucs-dns2020-20hr        |
+| WaveUnet  | Valentini-28spk   | 0.836   | 2.78  |  shahules786/mayavoz-waveunet-valentini-28spk      |
+| Demucs    | Valentini-28spk   | 0.961   | 2.56  |  shahules786/mayavoz-demucs-valentini-28spk       |
+| DCCRN     | Valentini-28spk   | 0.724   | 2.55  |  shahules786/mayavoz-dccrn-valentini-28spk         |
+| Demucs     | MS-SNSD-20hrs  | 0.56 | 1.26  | shahules786/mayavoz-demucs-ms-snsd-20       |
 
 Test scores are based on respective test set associated with train dataset.
+
+**See [tutorials](/notebooks/) to train your custom model**
 
 ## Installation
 Only Python 3.8+ is officially supported (though it might work with Python 3.7)
