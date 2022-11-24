@@ -1,0 +1,13 @@
+_target_: mayavoz.data.dataset.MayaDataset
+name : MS-SDSD
+root_dir : /Users/shahules/Myprojects/MS-SNSD
+duration : 1.5
+stride : 1
+sampling_rate: 16000
+batch_size: 32
+min_valid_minutes: 25
+files:
+  train_clean : CleanSpeech_training
+  test_clean : CleanSpeech_training
+  train_noisy : NoisySpeech_training
+  test_noisy : NoisySpeech_training

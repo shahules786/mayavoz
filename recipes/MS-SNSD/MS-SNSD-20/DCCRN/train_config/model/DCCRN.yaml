@@ -1,0 +1,25 @@
+_target_: mayavoz.models.dccrn.DCCRN
+num_channels: 1
+sampling_rate : 16000
+complex_lstm : True
+complex_norm : True
+complex_relu : True
+masking_mode : True
+
+encoder_decoder:
+  initial_output_channels : 32
+  depth : 6
+  kernel_size : 5
+  growth_factor : 2
+  stride : 2
+  padding : 2
+  output_padding : 1
+
+lstm:
+  num_layers : 2
+  hidden_size : 256
+
+stft:
+  window_len : 400
+  hop_size : 100
+  nfft : 512
