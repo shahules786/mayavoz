@@ -32,7 +32,7 @@ https://user-images.githubusercontent.com/25312635/203756185-737557f4-6e21-4146-
 from mayavoz.models import Mayamodel
 
 model = Mayamodel.from_pretrained("shahules786/mayavoz-waveunet-valentini-28spk")
-model("noisy_audio.wav")
+model.enhance("noisy_audio.wav")
 ```
 
 ## Recipes
