@@ -4,7 +4,7 @@ Clean and noisy parallel speech database. The database was designed to train and
 
 **References**
 ```BibTex
-@misc{DNSChallenge2020,
+@misc{
 title={Noisy speech database for training speech enhancement algorithms and TTS models},
 author={Valentini-Botinhao, Cassia}, year={2017},
 doi=https://doi.org/10.7488/ds/2117,
