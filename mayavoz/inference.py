@@ -95,6 +95,7 @@ class Inference:
     ):
         """
         stitch batched waveform into single waveform. (Overlap-add)
+        inspired from https://github.com/asteroid-team/asteroid
         arguments:
             data: batched waveform
             window_size : window_size used to batch waveform
