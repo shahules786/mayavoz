@@ -8,7 +8,7 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/shahules786/enhancer?style=social)
 ![GitHub all releases](https://img.shields.io/github/downloads/shahules786/enhancer/total)
 
-mayavoz is a Pytorch-based opensource toolkit for speech enhancement. It is designed to save time for audio researchers. Is provides easy to use pretrained audio enhancement models and facilitates highly customisable model training.
+mayavoz is a Pytorch-based opensource toolkit for speech enhancement. It is designed to save time for audio practioners & researchers. Is provides easy to use pretrained audio enhancement models and facilitates highly customisable model training.
 
 | **[Quick Start](#quick-start-fire)** | **[Installation](#installation)** | **[Tutorials](https://github.com/shahules786/enhancer/tree/main/notebooks)** | **[Available Recipes](#recipes)** | **[Demo](#demo)**
 ## Key features :key:
