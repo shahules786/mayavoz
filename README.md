@@ -8,20 +8,21 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/shahules786/enhancer?style=social)
 ![GitHub all releases](https://img.shields.io/github/downloads/shahules786/enhancer/total)
 
-mayavoz is a Pytorch-based opensource toolkit for speech enhancement. It is designed to save time for audio practioners & researchers. Is provides easy to use pretrained audio enhancement models and facilitates highly customisable model training.
+mayavoz is a Pytorch-based opensource toolkit for speech enhancement. It is designed to save time for audio practioners & researchers. It provides easy to use pretrained speech enhancement models and facilitates highly customisable model training.
 
 | **[Quick Start](#quick-start-fire)** | **[Installation](#installation)** | **[Tutorials](https://github.com/shahules786/enhancer/tree/main/notebooks)** | **[Available Recipes](#recipes)** | **[Demo](#demo)**
 ## Key features :key:
 
-* Various pretrained models nicely integrated with huggingface 	:hugs: that users can select and use without any hastle.
-* :package: Ability to train and validation your own custom speech enhancement models with just under 10 lines of code!
+* Various pretrained models nicely integrated with [huggingface hub](https://huggingface.co/docs/hub/index) :hugs: that users can select and use without any hastle.
+* :package: Ability to train and validate your own custom speech enhancement models with just under 10 lines of code!
 * :magic_wand: A command line tool that facilitates training of highly customisable speech enhacement models from the terminal itself!
-* :zap: Supports multi-gpu training integrated with Pytorch Lightning.
+* :zap: Supports multi-gpu training integrated with [Pytorch Lightning](https://pytorchlightning.ai/).
+* :shield: data augmentations integrated using [torch-augmentations](https://github.com/asteroid-team/torch-audiomentations)
 
 
 ## Demo
 
-Noisy audio followed by enhanced audio.
+Noisy speech followed by enhanced version.
 
 https://user-images.githubusercontent.com/25312635/203756185-737557f4-6e21-4146-aa2c-95da69d0de4c.mp4
 
