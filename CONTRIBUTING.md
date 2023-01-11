@@ -34,7 +34,7 @@ We use [black](https://black.readthedocs.io/en/stable/) and [flake8](https://fla
 
 
 ## Testing
-We adopt unit testing using [pyest](https://docs.pytest.org/en/latest/contents.html)
+We adopt unit testing using [pytest](https://docs.pytest.org/en/latest/contents.html)
 Please make sure that adding your new component does not decrease test coverage.
 
 ## Other tools
