@@ -129,7 +129,7 @@ class ComplexConvTranspose2d(nn.Module):
         imag_real = self.real_conv(imag)
 
         real = real_real - imag_imag
-        imag = real_imag - imag_real
+        imag = real_imag + imag_real
 
         out = torch.cat([real, imag], 1)
 
