@@ -9,7 +9,8 @@ import numpy as np
 import pytorch_lightning as pl
 import torch
 from huggingface_hub import cached_download, hf_hub_url
-from pytorch_lightning.utilities.cloud_io import load as pl_load
+from lightning_fabric.utilities.cloud_io import _load as pl_load
+
 from torch import nn
 from torch.optim import Adam
 
